@@ -1,0 +1,3 @@
+icon은 아이콘이미지
+TutorImg는 튜터사진
+proImg 는 상품등록할대 올리는 이미지
