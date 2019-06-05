@@ -20,5 +20,5 @@
 		}
 	}
 	
-	response.sendRedirect("/hmjm/Home/main.jsp");
+	response.sendRedirect("../Home/main.jsp");
 %>

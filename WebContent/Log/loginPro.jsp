@@ -10,7 +10,7 @@
 	
 	if(result){
 		session.setAttribute("loginId",m_email);
-		response.sendRedirect("/hmjm/Home/main.jsp");
+		response.sendRedirect("../Home/main.jsp");
 	}else{%>
 	
 		<script>

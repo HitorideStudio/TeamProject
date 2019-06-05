@@ -44,7 +44,7 @@
 		%>
 			<script>
 				alert("로그인 후 이용바랍니다.");
-				window.location = '/hmjm/Log/loginForm.jsp';
+				window.location = '/TeamProject/Log/loginForm.jsp';
 			</script>
 
 		<%
@@ -70,14 +70,14 @@
 				if (e == null) {
 			%>
 			<input type="button" value="튜터등록"
-				onclick="javascript:window.location='/hmjm/Tutor/tutorRegister2.jsp'">
+				onclick="javascript:window.location='/TeamProject/tutorRegister2.jsp'">
 
 
 			<%
 				} else {
 			%>
 			<input type="button" value="튜터수정"
-				onclick="javascript:window.location='/hmjm/Tutor/tutorModifyForm.jsp'">
+				onclick="javascript:window.location='/TeamProject/tutorModifyForm.jsp'">
 
 
 			<%}
@@ -86,7 +86,7 @@
 				
 				<div class="eachButton">
 					<input type="button" value="강의등록"
-				onclick="javascript:window.location='/hmjm/Product/addProduct.jsp'">
+				onclick="javascript:window.location='/TeamProject/Product/addProduct.jsp'">
 				</div>
 			</div>		
 		</div>

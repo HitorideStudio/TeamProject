@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import = "hmjm.bean.tutor.*" %>
-
+<%@ page import = "hmjm.bean.member.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,8 +32,8 @@ function checkLayer(val){
 <body>
 <%
 		String m_email = (String)session.getAttribute("loginId");
-		//memberDAO manager = memberDAO.getInstance();
-		//memberVO c = manager.getMember(m_email);
+		memberDAO manager = memberDAO.getInstance();
+		memberVO c = manager.getMember(m_email);
 		tutorDAO vo = tutorDAO.getInstance();
 		tutorVO e = vo.getMember(m_email);
 %>
