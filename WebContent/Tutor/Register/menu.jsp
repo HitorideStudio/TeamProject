@@ -70,14 +70,14 @@
 				if (e == null) {
 			%>
 			<input type="button" value="튜터등록"
-				onclick="javascript:window.location='/TeamProject/tutorRegister2.jsp'">
+				onclick="javascript:window.location='/TeamProject/Tutor/tutorRegister2.jsp'">
 
 
 			<%
 				} else {
 			%>
 			<input type="button" value="튜터수정"
-				onclick="javascript:window.location='/TeamProject/tutorModifyForm.jsp'">
+				onclick="javascript:window.location='/TeamProject/Tutor/tutorModifyForm.jsp'">
 
 
 			<%}

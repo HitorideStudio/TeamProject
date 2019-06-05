@@ -120,19 +120,19 @@ to {
 
 	<div class="slideshow-container">
 		<div class="mySlides fade">
-			<a href="#"><img src="/hmjm/Images/main1.jpg" style="width: 100%"></a>
+			<a href="#"><img src="/TeamProject/Images/main1.jpg" style="width: 100%"></a>
 		</div>
 
 		<div class="mySlides fade">
-			<a href="#"><img src="/hmjm/Images/main2.jpg" style="width: 100%"></a>
+			<a href="#"><img src="/TeamProject/Images/main2.jpg" style="width: 100%"></a>
 		</div>
 
 		<div class="mySlides fade">
-			<a href="#"><img src="/hmjm/Images/main3.jpg" style="width: 100%"></a>
+			<a href="#"><img src="/TeamProject/Images/main3.jpg" style="width: 100%"></a>
 		</div>
 
 		<div class="mySlides fade">
-			<a href="#"><img src="/hmjm/Images/main4.jpg" style="width: 100%"></a>
+			<a href="#"><img src="/TeamProject/Images/main4.jpg" style="width: 100%"></a>
 		</div>
 
 		<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a class="next"
