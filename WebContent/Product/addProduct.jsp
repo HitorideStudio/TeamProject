@@ -22,7 +22,7 @@
 %>
 <html>
 <head>
-<link rel="stylesheet" href="/hmjm/css/bootstrap.min.css" />
+
 <title>수업 등록</title>
 <script language="javascript" src="script.js"></script>
 <script language="javascript" type="text/javascript">
@@ -113,6 +113,15 @@
 input[type=number] {
 	width: 80px;
 }
+#menu {
+    background: #e3e3e3;
+    padding: 50px 0 50px 0;
+}
+.container{
+	background: #e3e3b1;
+    padding: 50px 0 50px 0;
+
+}
 </style>
 </head>
 <%--
@@ -125,10 +134,8 @@ input[type=number] {
 	<jsp:include page="/Home/header.jsp" />
 
 
-	<div class="jumbotron" >
-		<div class="container">
-			<h1 class="display-3">수업 등록</h1>
-		</div>
+	<div id="menu" >
+		<h1 class="display-3">수업 등록</h1>
 	</div>
 
 	<div class="container">
