@@ -7,38 +7,29 @@
 <title>튜터등록 메뉴</title>
 <style>
 #menu {
-	margin: 0 auto;
-	font-family: 나눔고딕;
+    background: #e3e3e3;
+    padding: 100px 0 100px 0;
 }
 
-.menu_new {
-	width: 1080;
-}
+.menu_new {width: 500;}
 
-}
 .twoButton {
-	
-	width: 800px;
-	hegith: 300px;
-	background: yellow;
-	margin: -50px 0 0 -50px;
+	width: 500px;
+	hegith: 20px;
+	background: green;
 	display:table-row;
 }
 
-.eachButton {
-	display:table-cell;
-}
+.eachButton {display:table-cell;}
+
 </style>
 </head>
-
-
-<body id="menu">
-	<header>
-	<jsp:include page="/Home/header.jsp" />
-	</header>
+<body>
 	
-	<div class="menu_new">
-		<div class="twoButton">
+	<jsp:include page="/Home/header.jsp" />
+	
+	<div id="menu">
+		<div class="eachButton" align="center">
 		<%
 			if (session.getAttribute("loginId") == null) {
 		%>
@@ -49,49 +40,38 @@
 
 		<%
 			} else {   
-
 				String m_email = (String) session.getAttribute("loginId");
 				memberDAO manager = memberDAO.getInstance();
 				memberVO c = manager.getMember(m_email);
-
-				//String t_email = (String)session.getAttribute("loginId");
-				//String t_email = request.getParameter((String)session.getAttribute("loginId"));
 				tutorDAO vo = tutorDAO.getInstance();
 				tutorVO e = vo.getMember(m_email);
 		%>
-
 		<div>
 			<b>확인용 이메일: <%=c.getM_email()%></b><br>
 			<b>확인용 이름:<%=c.getM_name()%></b><br>
 			<hr>
-			
-				<div class="eachButton">
+				<div>
 					<%
 				if (e == null) {
 			%>
-			<input type="button" value="튜터등록"
+			<input class="twoButton" type="button" value="튜터등록"
 				onclick="javascript:window.location='/TeamProject/Tutor/tutorRegister2.jsp'">
 
-
-			<%
-				} else {
-			%>
-			<input type="button" value="튜터수정"
+			<%} else {%>
+			<input class="twoButton" type="button" value="튜터수정"
 				onclick="javascript:window.location='/TeamProject/Tutor/tutorModifyForm.jsp'">
-
-
 			<%}
 			}%>
-				</div>
 				
-				<div class="eachButton">
-					<input type="button" value="강의등록"
+					<input class="twoButton" type="button" value="강의등록"
 				onclick="javascript:window.location='/TeamProject/Product/addProduct.jsp'">
 				</div>
 			</div>		
 		</div>
 	</div>
 	
-	<div><jsp:include page="/Home/footer.jsp" /></div>
+	<div>
+		<jsp:include page="/Home/footer.jsp" />
+	</div>
 </body>
 </html>

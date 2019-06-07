@@ -12,6 +12,8 @@
 		<h1>상단 메뉴 바 -> 수업신청서 클릭했을때 나오는 페이지</h1>
 	</div>
 
-	<jsp:include page="/Home/footer.jsp" />
+	<div>
+		<jsp:include page="/Home/footer.jsp" />
+	</div>
 </body>
 </html>

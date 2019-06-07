@@ -7,14 +7,14 @@
 <style>
 
 #footer{
-	width:1200px;
-	height:383px;
+	width:1050px;
+	height:300px;
 	margin: 0 auto;
 }
 .footer_cont {
 	width:1050px;
 	height:380px;
-	margin: 0px 230px;
+	margin: 0px 100px;
 	padding: 35px 0px 70px;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -36,6 +36,7 @@
 .info_cell_kko {
 	display: table-cell;/*상하가 아닌 좌우 나열을 위함*/
     float:right;
+    
 }
 .footer_mid {
 	width:1050px;
@@ -60,7 +61,7 @@
 
 .bot_logo {
 	display: table-cell;/*상하가 아닌 좌우 나열을 위함*/
-	width: 330px;
+	width: 300px;
 	height: 38px;
 	margin:20px;
    
@@ -141,15 +142,15 @@ span{
 
 		<div class="footer_bot">
 			<div class="bot_info">
-				<p>상호 : (주)쉘위 | 주소 : 서울특별시 관악구 남부순환로 1820 에그옐로우빌딩 14층 | 사업자등록번호 : 000-00-00000 | 대표자명 : 김성민</p>
+				<p>상호 : (주)쉘위 | 주소 : 서울특별시 관악구 남부순환로 1820 에그옐로우빌딩 14층 | 사업자등록번호 : 000-00-00000 | 대표자명 : 테스트용</p>
 				<p>Copyright ⓒ2019 taling inc, ltd. All rights reserved</p>
 			</div>
 			
 			<div class="bot_logo">
-                <a href="https://www.facebook.com/taling.me" target="_blank"><img src="/hmjm/Images/Icon/facebook.png" width="29px"/></a>
-                <a href="https://www.instagram.com/" target="_blank"><img src="/hmjm/Images/Icon/instagram.png" width="29px"/></a>
-                <a href="https://www.youtube.com/channel/UCuFmmpVLaNNFoy-cHqELl_A" target="_blank"><img src="/hmjm/Images/Icon/youtube.png" width="29px"/></a>
-                <a href="https://post.naver.com/taling_me" target="_blank"><img src="/hmjm/Images/Icon/naver.png" width="29px"/></a>
+                <a href="https://www.facebook.com/taling.me" target="_blank"><img src="/TeamProject/Images/Icon/facebook.png" width="29px"/></a>
+                <a href="https://www.instagram.com/" target="_blank"><img src="/TeamProject/Images/Icon/instagram.png" width="29px"/></a>
+                <a href="https://www.youtube.com/channel/UCuFmmpVLaNNFoy-cHqELl_A" target="_blank"><img src="/TeamProject/Images/Icon/youtube.png" width="29px"/></a>
+                <a href="https://post.naver.com/taling_me" target="_blank"><img src="/TeamProject/Images/Icon/naver.png" width="29px"/></a>
 			</div>
 
 		</div>

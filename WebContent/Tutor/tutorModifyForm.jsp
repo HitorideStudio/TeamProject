@@ -28,6 +28,16 @@ function checkLayer(val){
 	}
 }
 </script>
+
+<style type="text/css">
+#container_register {
+    background: #e3e3e3;
+    padding: 50px 0 50px 0;
+}
+
+
+</style>
+
 </head>
 <body>
 <%
@@ -37,10 +47,12 @@ function checkLayer(val){
 		tutorDAO vo = tutorDAO.getInstance();
 		tutorVO e = vo.getMember(m_email);
 %>
-<div>
+<jsp:include page="/Home/header.jsp" />
+<div id="container_register">
+
+
 <form action ="tutorModifyPro.jsp" name="tutor" method="post" align="center">
 	
- 	<br><br>
 	<div >		
 	<ul><h1>*****튜터 정보 수정*****</h1></ul>
 	<ul><h5>이메일 <%=e.getT_email()%></h5></ul>
@@ -63,7 +75,7 @@ function checkLayer(val){
 		<input id= "Cert0" type ="text" name ="t_c" placeholder="예)정보처리기사"
 		value="<%=e.getT_c() %>" class ="input_txt01" />
 	</ul>	
-	</div><br/>
+	<br/>
 	<div id="CertAdd"></div>
 	
  	<a onclick="addFile();" class="addbtn"><h5>추가 +</h5></a>
@@ -71,6 +83,11 @@ function checkLayer(val){
 	<input type ="submit" name ="modify" value="튜터 정보 수정" ><br>
 	<input type ="button" value="취소" onclick="javascript:window.location='Register/menu.jsp'">
 	</form>
+	</div>
+	
+	<div>
+		<jsp:include page="/Home/footer.jsp" />
+	</div>
 
 </div>
 </body>

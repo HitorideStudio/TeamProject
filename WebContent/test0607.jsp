@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<title>Page Title</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ì‰˜ìœ„?- ë‚˜ë§Œì˜ íŠœí„°ë¥¼ ë§Œë“¤ì–´ë³´ì„¸ìš”.</title>
 <style>
 * {
   box-sizing: border-box;
@@ -110,15 +111,58 @@ body {
   }
 }
 </style>
-
+<script language="javascript">
+		function openRealtimetalk(){
+			url="/TeamProject/My/qnatutee.jsp";
+			//»õ·Î¿î À©µµ¿ì·Î ¿­±â
+			open(url, "qnatutee",  "toolbar=no, location=no,status=no,menubar=no,resizable=no,width=400, height=660");
+		}
+	</script>
 </head>
+<%
+	String loginbarName;	//·Î±×ÀÎ¹Ù	
+	String logURL;
+	
+	String statebarName;	//·Î±×ÀÎ ¿©ºÎ¿¡ µû¸¥ »óÅÂ¹Ù
+	String stateURL;
+	
+	if(session.getAttribute("loginId") == null){
+		loginbarName="·Î±×ÀÎ";		
+		logURL="/TeamProject/Log/loginForm.jsp";
+		
+  		statebarName ="È¸¿ø°¡ÀÔ";	
+  		stateURL="/TeamProject/Register/register.jsp";
+	}else{
+		loginbarName="½Ç½Ã°£ Åå";	//·Î±×¾Æ¿ô±â´ÉÀº, ¼ö¾÷½ÅÃ»¼­¾È¿¡¼­ »ç¿ëÇÒ°Í_by.sm
+		logURL="/TeamProject/My/qnatutee.jsp";
+		
+		statebarName ="¼ö¾÷½ÅÃ»¼­";	
+		stateURL="/TeamProject/My/application.jsp";
+	}
+%>
 <body>
-	
-		<%--ìƒë‹¨ ì¹´í…Œê³ ë¦¬bar: header --%>
-		<jsp:include page="header.jsp" />
-	
-	
-	<div class="row">
+
+<div class="header">
+  <h1>My Website</h1>
+  <p>A website created by me.</p>
+</div>
+
+<div class="navbar">
+  <%//My/Application.jsp¿¡ ·Î±×¾Æ¿ô±â´É Ãß°¡ÇÏ¸é »èÁ¦ÇÒ°Í.
+	if(session.getAttribute("loginId")!= null){%>
+	<a href="/TeamProject/Log/logout.jsp"class="right">·Î±×¾Æ¿ô</a><%}%>	
+  <a href="/TeamProject/Tutor/Register/menu.jsp"class="right">Æ©ÅÍµî·Ï</a>
+  <a href="<%=stateURL%>"class="right"><%=statebarName%></a>
+				<%
+					if(session.getAttribute("loginId")== null){%>
+						<a href="<%=logURL%>"class="right"><%=loginbarName %></a>
+					<%}else{%>
+						<a href="" onclick="openRealtimetalk()"class="right"><%=loginbarName%></a>
+						<a href="/TeamProject/My/application.jsp" class="right">³»ÆäÀÌÁö</a> 
+					<%}%>
+</div>
+
+<div class="row">
   <div class="side">
     <h2>About Me</h2>
     <h5>Photo of me:</h5>
@@ -144,11 +188,10 @@ body {
     <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
   </div>
 </div>
-	
-	
-	
-		<jsp:include page="/Home/footer.jsp" />
-	
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
 </body>
 </html>
-

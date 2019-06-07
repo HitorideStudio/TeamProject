@@ -58,7 +58,7 @@
 				      <INPUT type="submit" value="로그인"/> 
 				      <INPUT type="reset" value="다시입력"/>
 				      <input type="button" value="회원가입" 
-				      onclick="javascript:window.location='/hmjm/Register/register.jsp'"></TD></TR>
+				      onclick="javascript:window.location='/TeamProject/Register/register.jsp'"></TD></TR>
 				</TABLE>
 			</form>
 			<%}else{ //로그아웃시 main.jsp로 이동

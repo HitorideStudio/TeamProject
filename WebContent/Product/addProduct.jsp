@@ -15,8 +15,8 @@
 
 	//튜터 등록 정보, 주석풀면 에러발생. 우선 주석달아둠
 	//nick값 받아오기위함
-	//tutorDAO tdao = tutorDAO.getInstance();		
-	//tutorVO tvo = tdao.getMember(preUser);
+	tutorDAO tdao = tutorDAO.getInstance();		
+	tutorVO tvo = tdao.getMember(preUser);
 	
 	
 %>
@@ -122,7 +122,7 @@ input[type=number] {
 --%>
 <body>
 	<jsp:include page="/Home/header.jsp" />
-	<div class="jumbotron">
+	<div class="jumbotron" >
 		<div class="container">
 			<h1 class="display-3">수업 등록</h1>
 		</div>
@@ -145,7 +145,7 @@ input[type=number] {
 				<div class="col-sm-3">
 					<%--tvo.getT_nick()--%>
 					<input type="text" readonly name="p_nick" class="form-control"
-						value="">
+						value="<%=tvo.getT_nick()%>">
 				</div>
 			</div>
 
