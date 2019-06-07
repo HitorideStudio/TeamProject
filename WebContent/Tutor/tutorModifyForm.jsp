@@ -56,7 +56,8 @@ function checkLayer(val){
 	<div >		
 	<ul><h1>*****튜터 정보 수정*****</h1></ul>
 	<ul><h5>이메일 <%=e.getT_email()%></h5></ul>
-	<ul><h5>프로필사진</h5><img src="../Images/TutorImg/<%=e.getT_selfimg()%>"></ul>
+	<ul><h5>프로필사진</h5><img src="../Images/TutorImg/<%=e.getT_selfimg()%>"
+	width="10%" height="10%"></ul>
 	<ul><h5>별명^_^</h5><input type="text" name="t_nick" value="<%=e.getT_nick()%>"/></ul>
 	 <ul><h5>학교인증
 		<input id="univ" type="radio" name="t_idcard" value="1" checked onclick="checkLayer(1);">

@@ -121,7 +121,10 @@ input[type=number] {
 	private String imgsrc;	//이미지파일을 가져오기위한 변수 추가 작성   
 --%>
 <body>
+
 	<jsp:include page="/Home/header.jsp" />
+
+
 	<div class="jumbotron" >
 		<div class="container">
 			<h1 class="display-3">수업 등록</h1>
@@ -287,5 +290,8 @@ input[type=number] {
 
 		</form>
 	</div>
+	
+		<jsp:include page="/Home/footer.jsp" />
+	
 </body>
 </html>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Page Title</title>
+<title>헤더</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -111,8 +111,8 @@ body {
 <body>
 
 <div class="header">
-  <h1>My Website</h1>
-  <p>A website created by me.</p>
+  <h1>Shall We</h1>
+  <p>우리 같이 배워볼까요?</p>
 </div>
 
 <div class="navbar">

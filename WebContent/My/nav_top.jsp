@@ -43,7 +43,7 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 		<tr>
 			<td class="section">
 				<%--등록한 이미지사진 불러오기 --%> <img src="/TeamProject/Images/Icon/user.png"
-				width="90px" /> <%--해당 이메일의 닉네임 --%> <%=m_email%> 님<br> <a
+				width="90px" /> <%--해당 이메일의 닉네임 --%> <%=c.getM_name()%> 님<br> <a
 				href="/TeamProject/My/profile.jsp">정보 수정</a>&nbsp;<a>튜터 정보 수정</a><br>
 				<a href="/TeamProject/Log/logout.jsp">로그아웃</a>
 			</td>
@@ -87,7 +87,7 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 				
 				</div>
 				<div>
-					<span>계정 정보:</span> <a href="/TeamProject/Account/resetPassword.jsp">비밀번호변경</a>
+					<span>계정 정보:</span> <a href="/TeamProject/My/profile.jsp">비밀번호변경</a>
 				</div>
 
 			</td>

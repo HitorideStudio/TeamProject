@@ -116,7 +116,7 @@ body {
 	
 		<%--상단 카테고리bar: header --%>
 		<jsp:include page="header.jsp" />
-	
+		
 	
 	<div class="row">
   <div class="side">
