@@ -7,7 +7,7 @@
 </head>
 <body>
 	<jsp:include page="/Home/header.jsp"/>
-	<div class="container">
+	<div>
 		<jsp:include page="nav_top.jsp" />
 		<h1>상단 메뉴 바 -> 수업신청서 클릭했을때 나오는 페이지</h1>
 	</div>

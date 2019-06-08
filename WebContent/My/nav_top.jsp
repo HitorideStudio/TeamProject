@@ -79,8 +79,7 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 				</div>
 				<div>
 				<%
-				if (e == null) {
-			%>
+				if (e == null) {%>
 				<span>학교 정보:</span> 등록안됨
 				<%} else {%>
 					<span>학교 정보:</span> <%=e.getT_school() %>
