@@ -30,6 +30,17 @@
 			document.getElementById('schoolmajor').style.display="none";
 		}
 	}
+	function readURL(input) { 
+		if (input.files && input.files[0]) { 
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#blah').attr('src', e.target.result); 
+				} 
+			reader.readAsDataURL(input.files[0]); 
+			} 
+		}
+
+	
 	</script>
 	
 
@@ -56,7 +67,8 @@ enctype="multipart/form-data">
 		<br>
 		
 	<label><b>프로필 사진</b></label>
-		<input type ="file" autofocus name="t_selfimg"required/>
+		<input type ="file" onchange="readURL(this);" autofocus name="t_selfimg"required/>
+		<img id="blah" src="#" alt="your image"/>
 		<br>
 		
 	<label><b>별__명</b></label>

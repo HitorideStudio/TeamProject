@@ -42,8 +42,9 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 	<table id="top" border="1">
 		<tr>
 			<td class="section">
-				<%--등록한 이미지사진 불러오기 --%> <img src="/TeamProject/Images/Icon/user.png"
-				width="90px" /> <%--해당 이메일의 닉네임 --%> <%=c.getM_name()%> 님<br> <a
+			<%=e.getT_num() %>
+				<%--등록한 이미지사진 불러오기 --%> <img src="../Images/TutorImg/<%=e.getT_selfimg()%>"
+				width="30%" height="30%" /> <%--해당 이메일의 닉네임 --%> <%=c.getM_name()%> 님<br> <a
 				href="/TeamProject/My/profile.jsp">정보 수정</a>&nbsp;<a>튜터 정보 수정</a><br>
 				<a href="/TeamProject/Log/logout.jsp">로그아웃</a>
 			</td>

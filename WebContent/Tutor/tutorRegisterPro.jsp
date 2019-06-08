@@ -61,8 +61,12 @@
 		//String t_nick= request.getParameter("t_nick");
 		
 		tutorDAO dao = tutorDAO.getInstance();
-		
+		tutorVO e = dao.getMember(t_email);
 		boolean result = dao.tutorCheck(t_email);
+		
+		//확인용
+		System.out.println("등록번호 바로 넘어가는지 확인"+e.getT_num());
+		//
 		
 		if(result){
 			session.setAttribute("registedTutor",t_email);

@@ -5,6 +5,9 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>튜터등록</title>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 <script type="text/JavaScript">
 
 	function addFile(){
@@ -27,7 +30,16 @@
 			document.getElementById('schoolmajor').style.display="none";
 		}
 	}
-	</script>
+	function readURL(input) { 
+		if (input.files && input.files[0]) { 
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#blah').attr('src', e.target.result); 
+				} 
+			reader.readAsDataURL(input.files[0]); 
+			} 
+	}	
+</script>
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -117,7 +129,8 @@ enctype="multipart/form-data">
     <hr>
     
     <label for="email"><b>프로필사진</b></label>
-    <input type="file"  autofocus name="t_selfimg"required/><hr>
+    <input type ="file" onchange="readURL(this);" autofocus name="t_selfimg" required/>
+	<img id="blah" src="#" alt="your image" width=100px/><br>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="이메일을 입력하세요" name="t_email"value="<%=(String)session.getAttribute("loginId")%>"/>

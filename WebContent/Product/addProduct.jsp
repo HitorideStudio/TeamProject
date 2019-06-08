@@ -173,40 +173,40 @@ input[type=number] {
 					<%--목록 그룹:select로 고를 수 있도록 구현할것 --%>
 					<select id="p_category" name="p_category">
 						<optgroup label="인기수업">
-							<option value="archi">ㅇㅇ</option>
-							<option value="computer" selected>ㅇㅇ</option>
+							<option value="archi">1</option>
+							<option value="computer" selected>2</option>
 						</optgroup>
 						<optgroup label="디자인">
-							<option value="history">ㅇㅇ</option>
-							<option value="lang">ㅇㅇ</option>
+							<option value="history">3</option>
+							<option value="lang">4</option>
 						</optgroup>
 						<optgroup label="실무역량">
-							<option value="history">ㅇㅇ</option>
-							<option value="lang">ㅇㅇ</option>
+							<option value="history">5</option>
+							<option value="lang">6</option>
 						</optgroup>
 						<optgroup label="뷰티">
-							<option value="history">ㅇㅇ</option>
-							<option value="lang">ㅇㅇ</option>
+							<option value="history">7</option>
+							<option value="lang">8</option>
 						</optgroup>
 						<optgroup label="영상">
-							<option value="history">ㅇㅇ</option>
-							<option value="lang">ㅇㅇ</option>
+							<option value="history">9</option>
+							<option value="lang">10</option>
 						</optgroup>
 						<optgroup label="외국어">
-							<option value="history">ㅇㅇ</option>
-							<option value="lang">ㅇㅇ</option>
+							<option value="history">11</option>
+							<option value="lang">12</option>
 						</optgroup>
 						<optgroup label="음악">
-							<option value="history">ㅇㅇ</option>
-							<option value="lang">ㅇㅇ</option>
+							<option value="history">13</option>
+							<option value="lang">14</option>
 						</optgroup>
 						<optgroup label="라이프스일">
-							<option value="history">ㅇㅇ</option>
-							<option value="lang">ㅇㅇ</option>
+							<option value="history">15</option>
+							<option value="lang">16</option>
 						</optgroup>
 						<optgroup label="기타">
-							<option value="history">ㅇㅇ</option>
-							<option value="lang">ㅇㅇ</option>
+							<option value="history">17</option>
+							<option value="lang">18</option>
 						</optgroup>
 					</select>
 				</div>
@@ -284,7 +284,11 @@ input[type=number] {
 				<label class="col-sm-2">수업 사진</label>
 				<div class="col-sm-5">
 					<input type="file" name="" class="form-control">
+					<!-- 여러장 업로드시 multiple사용
+					<input multiple="multiple" type="file" name="" class="form-control">-->
+					
 				</div>
+				
 			</div>
 
 			<div class="form-group row">
