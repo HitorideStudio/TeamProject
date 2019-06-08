@@ -8,17 +8,12 @@
 <style>
 #menu {
     background: #e3e3e3;
-    padding: 100px 0 100px 0;
+    padding: 100px 100px 100px 100px;
 }
 
 .menu_new {width: 500;}
 
-.twoButton {
-	width: 500px;
-	hegith: 20px;
-	background: green;
-	display:table-row;
-}
+
 
 .eachButton {display:table-cell;}
 
@@ -54,16 +49,16 @@
 					<%
 				if (e == null) {
 			%>
-			<input class="twoButton" type="button" value="튜터등록"
+			<input type="button" value="튜터등록"
 				onclick="javascript:window.location='/TeamProject/Tutor/tutorRegister2.jsp'">
 
 			<%} else {%>
-			<input class="twoButton" type="button" value="튜터수정"
+			<input type="button" value="튜터수정"
 				onclick="javascript:window.location='/TeamProject/Tutor/tutorModifyForm.jsp'">
 			<%}
 			}%>
 				
-					<input class="twoButton" type="button" value="강의등록"
+					<input type="button" value="강의등록"
 				onclick="javascript:window.location='/TeamProject/Product/addProduct.jsp'">
 				</div>
 			</div>		

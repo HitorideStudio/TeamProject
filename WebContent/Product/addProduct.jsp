@@ -290,7 +290,7 @@ input[type=number] {
 				</div>
 				
 			</div>
-
+		
 			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-10 ">
 					<input type="submit" value="수업 등록">&nbsp;&nbsp;&nbsp; <input
@@ -298,8 +298,8 @@ input[type=number] {
 						type="button" value="목록보기" OnClick="window.location='list.jsp'">
 				</div>
 			</div>
-
-		</form>
+	</form>
+		
 	</div>
 	
 		<jsp:include page="/Home/footer.jsp" />

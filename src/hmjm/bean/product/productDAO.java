@@ -7,6 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import hmjm.bean.product.*;
 
 
@@ -24,12 +28,13 @@ public class productDAO {
 
 	private Connection getConnection() {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String user="TEAM03", pass="TEAM03";
-			String url="jdbc:oracle:thin:@nullmaster.iptime.org:1521:xe";
-			conn = DriverManager.getConnection(url,user,pass);	
+			Context ctx = new InitialContext(); //context.xml. Á¤º¸ È¹µæ
+			Context env = (Context)ctx.lookup("java:comp/env"); //ctx¿¡¼­ javaÀÇ È¯°æ¼³Á¤¿ä¼Ò¸¸ È¹µæ
+			DataSource ds = (DataSource)env.lookup("jdbc/xe"); //Ä¿³Ø¼Ç °´Ã¼
+			conn = ds.getConnection();
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-		catch(Exception e){ e.printStackTrace(); }
 		return conn;
 	}
 	/*
@@ -56,8 +61,8 @@ public class productDAO {
 		String sql="";
 		try {
 			conn = getConnection(); 
-			pstmt = conn.prepareStatement("select max(num) from board");
-			rs = pstmt.executeQuery();
+			//pstmt = conn.prepareStatement("select max(num) from board");
+			//rs = pstmt.executeQuery();
 
 			sql = "insert into product values(product_seq.nextval,?,?,?,?,?,?,?,?,?,?,? ?,?)"; 
 			pstmt = conn.prepareStatement(sql);
@@ -78,7 +83,7 @@ public class productDAO {
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			//if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}

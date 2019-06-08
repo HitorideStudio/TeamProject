@@ -3,7 +3,7 @@
 
 <%-- addProduct.jsp 처리--%>
 
-<%	request.setCharacterEncoding("UTF-=8"); 	%>
+<%request.setCharacterEncoding("UTF-8");%>
 
 <jsp:useBean id="vo" scope="page" class="hmjm.bean.product.productVO"/>
 <jsp:setProperty name="vo" property="*" />
@@ -16,4 +16,4 @@
 <script>
 	alert("수업이 등록되었습니다.");
 </script>
-<META http-equiv=refresh content="0;url=/Tutor/Register/'menu.jsp">
+<META http-equiv=refresh content="0;url=../Tutor/Register/menu.jsp">
