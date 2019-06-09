@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import hmjm.bean.product.*;
 
 
+
 public class productDAO {
 	public static productDAO instance = new productDAO();
 	public static productDAO getInstance() {
@@ -57,14 +58,12 @@ public class productDAO {
 
 	//작성한 수업 등록 글 DB에 삽입
 	public void insertProduct(productVO product) {	    
-
-		String sql="";
 		try {
 			conn = getConnection(); 
 			//pstmt = conn.prepareStatement("select max(num) from board");
 			//rs = pstmt.executeQuery();
 
-			sql = "insert into product values(product_seq.nextval,?,?,?,?,?,?,?,?,?,?,? ?,?)"; 
+			String sql = "insert into product values(product_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, product.getP_email());
 			pstmt.setString(2, product.getP_category());
@@ -90,4 +89,44 @@ public class productDAO {
 	}
 
 
+public productVO getProduct(String p_email)
+		throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			productVO vo = null;
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(
+				"select * from product where p_email = ?");
+				pstmt.setString(1, p_email);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					vo = new productVO();
+					vo.setP_num(rs.getInt("p_num"));
+					vo.setP_email(rs.getString("p_email"));
+					vo.setP_category(rs.getString("p_category"));
+					vo.setP_classname(rs.getString("p_classname"));
+					vo.setP_self(rs.getString("p_self"));
+					vo.setP_time(rs.getString("p_time"));
+					vo.setP_cost(rs.getInt("p_cost"));
+					vo.setP_memo(rs.getString("p_memo"));
+					vo.setP_count_min(rs.getInt("p_count_min"));
+					vo.setP_count_max(rs.getInt("p_count_max"));
+					vo.setP_class1(rs.getString("p_class1"));
+					vo.setP_class2(rs.getString("p_class2"));
+					vo.setP_class3(rs.getString("p_class3"));
+					vo.setP_class4(rs.getString("p_class4"));
+					
+				}
+			} catch(Exception ex) {
+	            ex.printStackTrace();
+	        } finally {
+	            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	        }
+			return vo;
+	    }
 }

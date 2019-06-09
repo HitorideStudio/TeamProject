@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page import = "hmjm.bean.tutor.*" %>
+<%@ page import = "hmjm.bean.member.*" %>
+<%@ page import = "hmjm.bean.product.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,7 +120,7 @@ body {
 	
 		<%--상단 카테고리bar: header --%>
 		<jsp:include page="header.jsp" />
-		
+	
 	
 	<div class="row">
   <div class="side">

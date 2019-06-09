@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import = "hmjm.bean.tutor.*" %>
 <%@ page import = "hmjm.bean.member.*" %>
+<%@ page import = "hmjm.bean.product.*" %>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>상단 바</title>
 <style>
 #top, table {
@@ -32,12 +34,20 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 </style>
 </head>
 <%
+	request.setCharacterEncoding("utf-8");
+
 	String m_email =(String)session.getAttribute("loginId");//이메일 값
 	memberDAO manager = memberDAO.getInstance();
 	memberVO c = manager.getMember(m_email);
+	
 	tutorDAO vo = tutorDAO.getInstance();
 	tutorVO e = vo.getMember(m_email);
-%>
+	
+	productDAO product = productDAO.getInstance();
+	productVO p = product.getProduct(m_email);
+	
+	
+	%>
 <body>
 	<table id="top" border="1">
 		<tr>
@@ -63,8 +73,14 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 					</div>
 					<div class="sec_box_ele">
 						<img class="icon" alt="" src="/TeamProject/Images/Icon/kakao.jpg">
-						<p>위시리스트</p>
-						<p>0건</p>
+						<p>나의 수업</p>
+						<%if(p==null){ %>
+							<p>아직 나의 수업이 없어요</p>
+							<%}else{ %>
+						
+						<p><%=p.getP_classname() %></p>
+						<p><%=p.getP_category() %></p>
+						<%} %>
 					</div>
 
 				</div>

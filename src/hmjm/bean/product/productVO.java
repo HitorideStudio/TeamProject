@@ -24,6 +24,12 @@ public class productVO {
 	public int getP_num() {
 		return p_num;
 	}
+	public int getP_cost() {
+		return p_cost;
+	}
+	public void setP_cost(int p_cost) {
+		this.p_cost = p_cost;
+	}
 	public void setP_num(int p_num) {
 		this.p_num = p_num;
 	}
@@ -101,12 +107,8 @@ public class productVO {
 	public void setP_time(String p_time) {
 		this.p_time = p_time;
 	}
-	public int getP_cost() {
-		return p_cost;
-	}
-	public void setP_cost(String p_cost) {
-		this.p_cost = p_cost;
-	}
+	
+	
 	public int getP_count_min() {
 		return p_count_min;
 	}

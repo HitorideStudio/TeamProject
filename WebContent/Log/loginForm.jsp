@@ -4,32 +4,19 @@
 <html lang="en">
 <head>
 	<title>Login</title>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 </head>
 
 <body class="not-front">
-<div id="main">
+
 	<jsp:include page="/Home/header.jsp"/>
 
-
-<div id="inner">
-
-<div class="top2_wrapper">
-<div class="bg1"><img src="images/bg1.jpg" alt="" class="img"></div>
-<div class="top2_inner">
-<div class="container">
-<div class="top2 clearfix">
 	
 <h1>Login</h1>
 
-</div>	
-</div>	
-</div>
-</div>
 
-<div id="content">
-<div class="container">
-<div class="row">
-<div class="span9">
+
+
 	
 <h2><span>Welcome</span></h2>
 
@@ -59,7 +46,26 @@
 				      <INPUT type="reset" value="다시입력"/>
 				      <input type="button" value="회원가입" 
 				      onclick="javascript:window.location='/TeamProject/Register/register.jsp'"></TD></TR>
-				</TABLE>
+				      </TABLE>
+			<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+			<div id="naverIdLogin"></div>
+			<!-- //네이버아이디로로그인 버튼 노출 영역 -->
+			
+
+			<script type="text/javascript">
+				var naverLogin = new naver.LoginWithNaverId(
+					{
+						clientId: "trNOw1JZKuh2hg645_zG",
+						callbackUrl: "http://localhost:8080/TeamProject/Log/callback.jsp",
+						isPopup: false, /* 팝업을 통한 연동처리 여부 */
+						loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
+					}
+				);
+	
+				/* 설정정보를 초기화하고 연동을 준비 */
+				naverLogin.init();
+			</script>
+			<!-- // 네이버아이디로로그인 초기화 Script -->
 			</form>
 			<%}else{ //로그아웃시 main.jsp로 이동
 				session.invalidate();
@@ -68,19 +74,12 @@
 						history.go(-1);
 					</script>
 			<%}%>
-
+</div>
+</div>
+</div>
 
 			
-		</div>
-	</div>
-</div>
 
-</div>
-
-</div>
-
-</div>	
-</div>
 
 <jsp:include page="/Home/footer.jsp" />
 </body>

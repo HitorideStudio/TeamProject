@@ -1,20 +1,21 @@
-<%@ page contentType="text/html; charset=euc-kr"%>
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="hmjm.bean.member.*"%>
 <%@ page import="hmjm.bean.tutor.*"%>
 
-<%-- 19.06.04¼º¹Î ÀÛ¼º , ¹Ì¿Ï¼º, --%>
+<%-- 19.06.04ì„±ë¯¼ ì‘ì„± , ë¯¸ì™„ì„±, --%>
 <%--
 
  --%>
+
 <%
 	request.setCharacterEncoding("UTF-8");
-	String preUser = (String) session.getAttribute("loginId");//ÇöÀç ¼¼¼Ç,ÀÌ¸ŞÀÏÀÌ µé¾î°¨
-	//ÀÏ¹İÀ¯Àú Á¤º¸
+	String preUser = (String) session.getAttribute("loginId");//í˜„ì¬ ì„¸ì…˜,ì´ë©”ì¼ì´ ë“¤ì–´ê°
+	//ì¼ë°˜ìœ ì € ì •ë³´
 	memberDAO mdao = memberDAO.getInstance();
 	memberVO mvo = mdao.getMember(preUser);
 
-	//Æ©ÅÍ µî·Ï Á¤º¸, ÁÖ¼®Ç®¸é ¿¡·¯¹ß»ı. ¿ì¼± ÁÖ¼®´Ş¾ÆµÒ
-	//nick°ª ¹Ş¾Æ¿À±âÀ§ÇÔ
+	//íŠœí„° ë“±ë¡ ì •ë³´, ì£¼ì„í’€ë©´ ì—ëŸ¬ë°œìƒ. ìš°ì„  ì£¼ì„ë‹¬ì•„ë‘ 
+	//nickê°’ ë°›ì•„ì˜¤ê¸°ìœ„í•¨
 	tutorDAO tdao = tutorDAO.getInstance();		
 	tutorVO tvo = tdao.getMember(preUser);
 	
@@ -22,90 +23,90 @@
 %>
 <html>
 <head>
-
-<title>¼ö¾÷ µî·Ï</title>
+<meta charset="UTF-8">
+<title>ìˆ˜ì—… ë“±ë¡</title>
 <script language="javascript" src="script.js"></script>
 <script language="javascript" type="text/javascript">
-	/*¸ğµç ¿ä¼Ò À¯È¿¼º °Ë»ç*/
+	/*ëª¨ë“  ìš”ì†Œ ìœ íš¨ì„± ê²€ì‚¬*/
 	function writeSave() {
 		var form = document.addProductForm;
 
 		if (form.p_classname.value == "") {
-			alert("¼ö¾÷ÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ½Ê½Ã¿ä.");
+			alert("ìˆ˜ì—…ì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì‹­ì‹œìš”.");
 			form.p_classname.focus();
 			return false;
 		}
 		if (form.p_category.value == "") {
-			alert("Ä«Å×°í¸®¸¦ ÁöÁ¤ÇØÁÖ¼¼¿ä");
+			alert("ì¹´í…Œê³ ë¦¬ë¥¼ ì§€ì •í•´ì£¼ì„¸ìš”");
 			form.p_category.focus();
 			return false;
 		}
 		if (form.p_self.value == "") {
-			alert("ÀÚ½Å ÀÚ½ÅÀ» Ç¥ÇöÇØ ÁÖ¼¼¿ä.");
+			alert("ìì‹  ìì‹ ì„ í‘œí˜„í•´ ì£¼ì„¸ìš”.");
 			form.p_self.focus();
 			return false;
 		}
 		if (form.p_class1.value == "") {
-			alert("¼ö¾÷¿¡ ´ëÇÑ ¼Ò°³¸¦ ÇØÁÖ¼¼¿ä.");
+			alert("ìˆ˜ì—…ì— ëŒ€í•œ ì†Œê°œë¥¼ í•´ì£¼ì„¸ìš”.");
 			form.p_class1.focus();
 			return false;
 		}
 		if (form.p_class2.value == "") {
-			alert("¼ö¾÷¿¡ ´ëÇÑ ¼Ò°³¸¦ ÇØÁÖ¼¼¿ä.");
+			alert("ìˆ˜ì—…ì— ëŒ€í•œ ì†Œê°œë¥¼ í•´ì£¼ì„¸ìš”.");
 			form.p_class2.focus();
 			return false;
 		}
 		if (form.p_class3.value == "") {
-			alert("¼ö¾÷¿¡ ´ëÇÑ ¼Ò°³¸¦ ÇØÁÖ¼¼¿ä.");
+			alert("ìˆ˜ì—…ì— ëŒ€í•œ ì†Œê°œë¥¼ í•´ì£¼ì„¸ìš”.");
 			form.p_class3.focus();
 			return false;
 		}
 		if (form.p_class4.value == "") {
-			alert("¼ö¾÷¿¡ ´ëÇÑ ¼Ò°³¸¦ ÇØÁÖ¼¼¿ä.");
+			alert("ìˆ˜ì—…ì— ëŒ€í•œ ì†Œê°œë¥¼ í•´ì£¼ì„¸ìš”.");
 			form.p_class4.focus();
 			return false;
 		}
 		if (form.p_time.value == "") {
-			alert("¼Ò¿ä ½Ã°£À» ÁöÁ¤ÇØÁÖ¼¼¿ä.");
+			alert("ì†Œìš” ì‹œê°„ì„ ì§€ì •í•´ì£¼ì„¸ìš”.");
 			form.p_time.focus();
 			return false;
 		}
 		if (form.p_cost.value == "") {
-			alert("ÁöºÒÇØ¾ßÇÒ °¡°İÀ» ÁöÁ¤ÇØÁÖ¼¼¿ä.");
+			alert("ì§€ë¶ˆí•´ì•¼í•  ê°€ê²©ì„ ì§€ì •í•´ì£¼ì„¸ìš”.");
 			form.p_cost.focus();
 			return false;
 		}
-		if (form.p_cost.value == "") {/*ÀÌ¹ÌÁö*/
-			alert("ÁöºÒÇØ¾ßÇÒ °¡°İÀ» ÁöÁ¤ÇØÁÖ¼¼¿ä.");
+		if (form.p_cost.value == "") {/*ì´ë¯¸ì§€*/
+			alert("ì§€ë¶ˆí•´ì•¼í•  ê°€ê²©ì„ ì§€ì •í•´ì£¼ì„¸ìš”.");
 			form.p_cost.focus();
 			return false;
 		}
-		/*id°ªÀ¸·Î Ã¼Å© ¿©ºÎ È®ÀÎ*/
+		/*idê°’ìœ¼ë¡œ ì²´í¬ ì—¬ë¶€ í™•ì¸*/
 		if (document.getElementById("oto").checked != true
 				&& document.getElementById("otm").checked != true) {
-			alert("Âü¿© ÀÎ¿ø¿¡ ´ëÇÑ Á¤º¸¸¦ Ã¼Å©ÇØÁÖ¼¼¿ä.");
+			alert("ì°¸ì—¬ ì¸ì›ì— ëŒ€í•œ ì •ë³´ë¥¼ ì²´í¬í•´ì£¼ì„¸ìš”.");
 			return false;
 		}
-		if (document.getElementById("otm").checked == true) {//1:N Ã¼Å©µÇ¾úÀ»¶§
+		if (document.getElementById("otm").checked == true) {//1:N ì²´í¬ë˜ì—ˆì„ë•Œ
 			if (form.p_count_min.value == "") {
-				alert("¼ö¾÷¿¡ Âü¿©°¡´ÉÇÑ ÃÖ¼Ò ÀÎ¿øÀ» ÁöÁ¤ÇØÁÖ¼¼¿ä.");
+				alert("ìˆ˜ì—…ì— ì°¸ì—¬ê°€ëŠ¥í•œ ìµœì†Œ ì¸ì›ì„ ì§€ì •í•´ì£¼ì„¸ìš”.");
 				form.p_count_min.focus();
 				return false;
 			}
 			if (form.p_count_max.value == "") {
-				alert("¼ö¾÷¿¡ Âü¿©°¡´ÉÇÑ ÃÖ´ë ÀÎ¿øÀ» ÁöÁ¤ÇØÁÖ¼¼¿ä.");
+				alert("ìˆ˜ì—…ì— ì°¸ì—¬ê°€ëŠ¥í•œ ìµœëŒ€ ì¸ì›ì„ ì§€ì •í•´ì£¼ì„¸ìš”.");
 				form.p_count_max.focus();
 				return false;
 			}
 		}
 	}
 
-	/*¶óµğ¿À ¹öÆ° value°ª Á¶°Çºñ±³·Î, º¸¿©ÁÖ±â/¼û±è*/
+	/*ë¼ë””ì˜¤ ë²„íŠ¼ valueê°’ ì¡°ê±´ë¹„êµë¡œ, ë³´ì—¬ì£¼ê¸°/ìˆ¨ê¹€*/
 	function div_onoff(v, id) {
 		if (v == "2")
-			document.getElementById(id).style.display = "";//º¸¿©ÁÜ
+			document.getElementById(id).style.display = "";//ë³´ì—¬ì¤Œ
 		else
-			document.getElementById(id).style.display = "none";//¼û±è		
+			document.getElementById(id).style.display = "none";//ìˆ¨ê¹€		
 	}
 </script>
 
@@ -125,9 +126,9 @@ input[type=number] {
 </style>
 </head>
 <%--
-	p_num ¼ö¾÷¹øÈ£´Â ÀÚµ¿À¸·Î »ı¼º ÈÄ ºÎ¿©ÇÒ °Í(input="hidden"..?)
-	t_email ÀÌ¸ŞÀÏ Æ©ÅÍ table¿¡¼­ °¡Á®¿Ã°Í
-	private String imgsrc;	//ÀÌ¹ÌÁöÆÄÀÏÀ» °¡Á®¿À±âÀ§ÇÑ º¯¼ö Ãß°¡ ÀÛ¼º   
+	p_num ìˆ˜ì—…ë²ˆí˜¸ëŠ” ìë™ìœ¼ë¡œ ìƒì„± í›„ ë¶€ì—¬í•  ê²ƒ(input="hidden"..?)
+	t_email ì´ë©”ì¼ íŠœí„° tableì—ì„œ ê°€ì ¸ì˜¬ê²ƒ
+	private String imgsrc;	//ì´ë¯¸ì§€íŒŒì¼ì„ ê°€ì ¸ì˜¤ê¸°ìœ„í•œ ë³€ìˆ˜ ì¶”ê°€ ì‘ì„±   
 --%>
 <body>
 
@@ -135,7 +136,7 @@ input[type=number] {
 
 
 	<div id="menu" >
-		<h1 class="display-3">¼ö¾÷ µî·Ï</h1>
+		<h1 class="display-3">ìˆ˜ì—… ë“±ë¡</h1>
 	</div>
 
 	<div class="container">
@@ -143,15 +144,14 @@ input[type=number] {
 			action="addProductPro.jsp" onsubmit="return writeSave()">
 
 			<div class="form-group row">
-				<label class="col-sm-2">ÀÌ¸§</label>
+				<label class="col-sm-2">ìˆ˜ì—…ì œëª©</label>
 				<div class="col-sm-3">
-					<input type="text" readonly name="p_classname" class="form-control"
-						value="<%=mvo.getM_name()%>">
+					<input type="text" name="p_classname" class="form-control">
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2">´Ğ³×ÀÓ</label>
+				<label class="col-sm-2">ë‹‰ë„¤ì„</label>
 				<div class="col-sm-3">
 					<%--tvo.getT_nick()--%>
 					<input type="text" readonly name="p_nick" class="form-control"
@@ -160,7 +160,7 @@ input[type=number] {
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2">ÀÌ¸ŞÀÏ</label>
+				<label class="col-sm-2">ì´ë©”ì¼</label>
 				<div class="col-sm-3">
 					<input type="text" readonly name="p_email" class="form-control"
 						value="<%=mvo.getM_email()%>">
@@ -168,43 +168,43 @@ input[type=number] {
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2">Ä«Å×°í¸®</label>
+				<label class="col-sm-2">ì¹´í…Œê³ ë¦¬</label>
 				<div class="col-sm-3">
-					<%--¸ñ·Ï ±×·ì:select·Î °í¸¦ ¼ö ÀÖµµ·Ï ±¸ÇöÇÒ°Í --%>
+					<%--ëª©ë¡ ê·¸ë£¹:selectë¡œ ê³ ë¥¼ ìˆ˜ ìˆë„ë¡ êµ¬í˜„í• ê²ƒ --%>
 					<select id="p_category" name="p_category">
-						<optgroup label="ÀÎ±â¼ö¾÷">
+						<optgroup label="ì¸ê¸°ìˆ˜ì—…">
 							<option value="archi">1</option>
 							<option value="computer" selected>2</option>
 						</optgroup>
-						<optgroup label="µğÀÚÀÎ">
+						<optgroup label="ë””ìì¸">
 							<option value="history">3</option>
 							<option value="lang">4</option>
 						</optgroup>
-						<optgroup label="½Ç¹«¿ª·®">
+						<optgroup label="ì‹¤ë¬´ì—­ëŸ‰">
 							<option value="history">5</option>
 							<option value="lang">6</option>
 						</optgroup>
-						<optgroup label="ºäÆ¼">
+						<optgroup label="ë·°í‹°">
 							<option value="history">7</option>
 							<option value="lang">8</option>
 						</optgroup>
-						<optgroup label="¿µ»ó">
+						<optgroup label="ì˜ìƒ">
 							<option value="history">9</option>
 							<option value="lang">10</option>
 						</optgroup>
-						<optgroup label="¿Ü±¹¾î">
+						<optgroup label="ì™¸êµ­ì–´">
 							<option value="history">11</option>
 							<option value="lang">12</option>
 						</optgroup>
-						<optgroup label="À½¾Ç">
+						<optgroup label="ìŒì•…">
 							<option value="history">13</option>
 							<option value="lang">14</option>
 						</optgroup>
-						<optgroup label="¶óÀÌÇÁ½ºÀÏ">
+						<optgroup label="ë¼ì´í”„ìŠ¤ì¼">
 							<option value="history">15</option>
 							<option value="lang">16</option>
 						</optgroup>
-						<optgroup label="±âÅ¸">
+						<optgroup label="ê¸°íƒ€">
 							<option value="history">17</option>
 							<option value="lang">18</option>
 						</optgroup>
@@ -213,62 +213,63 @@ input[type=number] {
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2">°­»ç ¼Ò°³</label>
+				<label class="col-sm-2">ê°•ì‚¬ ì†Œê°œ</label>
 				<div class="col-sm-5">
 					<textarea name="p_self" rows="2" cols="50"></textarea>
 				</div>
 			</div>
-			<h2>°­ÀÇ ¼Ò°³</h2>
+			<h2>ê°•ì˜ ì†Œê°œ</h2>
+			
 			<div class="form-group row">
-				<label class="col-sm-2">Æ©ÅÍ Á¤º¸</label>
+				<label class="col-sm-2">íŠœí„° ì •ë³´</label>
 				<div class="col-sm-3">
 					<textarea name="p_class1" rows="2" cols="50"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2">¼ö¾÷ ¼Ò°³</label>
+				<label class="col-sm-2">ìˆ˜ì—… ì†Œê°œ</label>
 				<div class="col-sm-3">
 					<textarea name="p_class2" rows="2" cols="50"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2">¼ö¾÷ ´ë»ó</label>
+				<label class="col-sm-2">ìˆ˜ì—… ëŒ€ìƒ</label>
 				<div class="col-sm-3">
 					<textarea name="p_class3" rows="2" cols="50"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2">Ä¿¸®Å§·³</label>
+				<label class="col-sm-2">ì»¤ë¦¬í˜ëŸ¼</label>
 				<div class="col-sm-3">
 					<textarea name="p_class4" rows="2" cols="50"></textarea>
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2">¼Ò¿ä½Ã°£</label>
+				<label class="col-sm-2">ì†Œìš”ì‹œê°„</label>
 				<div class="col-sm-3">
 					<input type="number" name="p_time" min=1>
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2">°¡°İ</label>
+				<label class="col-sm-2">ê°€ê²©</label>
 				<div class="col-sm-3">
-					<input type="number" name="p_cost" step="1000" min=0>¿ø
+					<input type="number" name="p_cost" step="1000" min=0>ì›
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2">ÀÎ¿ø</label>
+				<label class="col-sm-2">ì¸ì›</label>
 				<div class="col-sm-3">
 					<input type="radio" name="howmany"
-						id="oto" value="1" onclick="div_onoff(this.value,'con');">1:1°­½À<br> 
+						id="oto" value="1" onclick="div_onoff(this.value,'con');">1:1ê°•ìŠµ<br> 
 					<input type="radio" name="howmany" id="otm" value="2"
-						onclick="div_onoff(this.value,'con');">1:N °­½À<br>
+						onclick="div_onoff(this.value,'con');">1:N ê°•ìŠµ<br>
 					
 					<div id="con" style="display: none">
-						ÃÖ¼ÒÀÎ¿ø: <input type="number" name="p_count_min" min=1><br>
-						ÃÖ´ëÀÎ¿ø: <input type="number" name="p_count_max" min=1>
+						ìµœì†Œì¸ì›: <input type="number" name="p_count_min" min=1><br>
+						ìµœëŒ€ì¸ì›: <input type="number" name="p_count_max" min=1>
 					</div>
 				</div>
 			</div>
@@ -281,10 +282,10 @@ input[type=number] {
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2">¼ö¾÷ »çÁø</label>
+				<label class="col-sm-2">ìˆ˜ì—… ì‚¬ì§„</label>
 				<div class="col-sm-5">
 					<input type="file" name="" class="form-control">
-					<!-- ¿©·¯Àå ¾÷·Îµå½Ã multiple»ç¿ë
+					<!-- ì—¬ëŸ¬ì¥ ì—…ë¡œë“œì‹œ multipleì‚¬ìš©
 					<input multiple="multiple" type="file" name="" class="form-control">-->
 					
 				</div>
@@ -293,9 +294,9 @@ input[type=number] {
 		
 			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-10 ">
-					<input type="submit" value="¼ö¾÷ µî·Ï">&nbsp;&nbsp;&nbsp; <input
-						type="reset" value="¸ğµç ³»¿ë Ãë¼Ò"> &nbsp;&nbsp;&nbsp; <input
-						type="button" value="¸ñ·Ïº¸±â" OnClick="window.location='list.jsp'">
+					<input type="submit" value="ìˆ˜ì—… ë“±ë¡">&nbsp;&nbsp;&nbsp; <input
+						type="reset" value="ëª¨ë“  ë‚´ìš© ì·¨ì†Œ"> &nbsp;&nbsp;&nbsp; <input
+						type="button" value="ëª©ë¡ë³´ê¸°" OnClick="window.location='list.jsp'">
 				</div>
 			</div>
 	</form>
