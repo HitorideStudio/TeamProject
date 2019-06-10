@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import = "hmjm.bean.dao.reviewDAO" %>
-<%@ page import = "hmjm.bean.vo.reviewVO" %>
+<%@ page import = "hmjm.bean.review.*" %>
+
 <%@ page import = "java.util.List" %>
 <%--index.jsp 메인 페이지 --%>
 

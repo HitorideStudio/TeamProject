@@ -44,7 +44,7 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 	tutorVO e = vo.getMember(m_email);
 	
 	productDAO product = productDAO.getInstance();
-	productVO p = product.getProduct(m_email);
+	productVO p = product.getProduct2(m_email);
 	
 	
 	%>

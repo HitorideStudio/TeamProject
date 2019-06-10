@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import ="hmjm.bean.dao.*"%>
+<%@ page import ="hmjm.bean.member.*"%>
 
 <% request.setCharacterEncoding("utf-8"); %>
 
-<jsp:useBean id="vo" class="hmjm.bean.vo.memberVO">
+<jsp:useBean id="vo" class="hmjm.bean.member.memberVO">
     <jsp:setProperty name="vo" property="*" />
 </jsp:useBean>
 

@@ -64,13 +64,10 @@
 
 
 <%
-String m_email ="mfboy19@naver.com";//이메일 값
-
-tutorDAO vo = tutorDAO.getInstance();
-tutorVO e = vo.getMember(m_email);
-
-productDAO product = productDAO.getInstance();
-productVO p = product.getProduct(m_email);
+	int num = Integer.parseInt(request.getParameter("p_num"));
+	String pageNum = request.getParameter("pageNum");
+	productDAO dbPro = productDAO.getInstance();
+	productVO vo = dbPro.getProduct(num);
 
 %>
 	
@@ -85,9 +82,9 @@ productVO p = product.getProduct(m_email);
 	</form>-->
 	<div>
 		<h1>수업에서 수강신청하기 누르면 나옴</h1>
-		<p>수업번호: <%=p.getP_num() %></p>
+		<p>수업번호: <%=vo.getP_num() %></p>
 		<p>^^^위에 수업번호를 선택해서 넘어왔다고 생각하고^^^</p>
-		<p>클래스명: <%=p.getP_classname() %></p>
+		<p>클래스명: <%=vo.getP_classname() %></p>
 	</div>
 		<br>
 	<div>

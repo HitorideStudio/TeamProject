@@ -120,6 +120,7 @@ body {
 	
 		<%--상단 카테고리bar: header --%>
 		<jsp:include page="header.jsp" />
+		<jsp:include page="/listTest.jsp" />
 	
 	
 	<div class="row">
