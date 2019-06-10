@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>튜터등록 메뉴</title>
+<title>튜터등록 메뉴k</title>
 <style>
 #menu {
     background: #e3e3e3;
