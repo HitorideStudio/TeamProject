@@ -47,9 +47,11 @@
 				      <input type="button" value="회원가입" 
 				      onclick="javascript:window.location='/TeamProject/Register/register.jsp'"></TD></TR>
 				      </TABLE>
-			<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+			
+			<!-- 네이버아이디로로그인 버튼 노출 영역 **일단보류!!
 			<div id="naverIdLogin"></div>
-			<!-- //네이버아이디로로그인 버튼 노출 영역 -->
+			
+			<!-- //네이버아이디로로그인 버튼 노출 영역 
 			
 
 			<script type="text/javascript">
@@ -65,7 +67,11 @@
 				/* 설정정보를 초기화하고 연동을 준비 */
 				naverLogin.init();
 			</script>
-			<!-- // 네이버아이디로로그인 초기화 Script -->
+			
+			 네이버아이디로로그인 초기화 Script -->
+			
+			
+			
 			</form>
 			<%}else{ //로그아웃시 main.jsp로 이동
 				session.invalidate();

@@ -47,7 +47,7 @@
 					}
 					alert(email);
 
-					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/TeamProject/Log/loginForm.jsp");
+					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/TeamProject/Home/main.jsp");
 				} else {
 					console.log("callback 처리에 실패하였습니다.");
 				}
