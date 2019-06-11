@@ -16,13 +16,11 @@
 	boarder: 1px solid;
 	text-align: center;
 }
-
 .section {
 	width: 400px;
 	height: 150px;
 	margin: 50px 0 0 30px;
 }
-
 .sec_box {display: table-row;}
 
 .sec_box_ele {display: table-cell;}
@@ -44,14 +42,14 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 	tutorVO e = vo.getMember(m_email);
 	
 	productDAO product = productDAO.getInstance();
-	productVO p = product.getProduct2(m_email);
-	
+	productVO p = product.getProducts(m_email);
 	
 	%>
 <body>
 	<table id="top" border="1">
 		<tr>
 			<td class="section">
+			
 			<%=e.getT_num() %>
 				<%--등록한 이미지사진 불러오기 --%> <img src="../Images/TutorImg/<%=e.getT_selfimg()%>"
 				width="30%" height="30%" /> <%--해당 이메일의 닉네임 --%> <%=c.getM_name()%> 님<br> <a
@@ -74,13 +72,13 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 					<div class="sec_box_ele">
 						<img class="icon" alt="" src="/TeamProject/Images/Icon/kakao.jpg">
 						<p>나의 수업</p>
-						<%if(p==null){ %>
+						<%if(p == null){ %>
 							<p>아직 나의 수업이 없어요</p>
 							<%}else{ %>
-						
-						<p><%=p.getP_classname() %></p>
-						<p><%=p.getP_category() %></p>
-						<%} %>
+							
+							<p><%=p.getP_classname() %></p>
+							<p><%=p.getP_num() %></p>
+							<%}%>
 					</div>
 
 				</div>

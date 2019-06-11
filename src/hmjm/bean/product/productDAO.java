@@ -52,7 +52,7 @@ public class productDAO {
 	private String p_class3;	//소개_튜터소개
 	private String p_class4;	//소개_튜터소개
 	private String p_time;		//수업 소요 시간
-	private String p_cost;		//가격
+	private int p_cost;		//가격
 	private int p_count_min;	//인원 최소 인원
 	private int p_count_max;	//인원 최대 인원
 	private String p_memo;		//덧 붙이는 말
@@ -90,7 +90,7 @@ public class productDAO {
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
 	}
-	public productVO getProduct2(String p_mail)
+	public productVO getProducts(String p_email)
 			throws Exception{
 				Connection conn = null;
 				PreparedStatement pstmt = null;
@@ -99,8 +99,8 @@ public class productDAO {
 				try {
 					conn = getConnection();
 					pstmt = conn.prepareStatement(
-					"select * from product where p_mail = ?");
-					pstmt.setString(1, p_mail);
+					"select * from product where p_email = ?");
+					pstmt.setString(1, p_email);
 					rs = pstmt.executeQuery();
 					
 					if(rs.next()) {
