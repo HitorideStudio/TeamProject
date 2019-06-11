@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <%
-int pageSize = 5;
+int pageSize = 10;
 
 String pageNum = request.getParameter("pageNum");
 if (pageNum == null) {
@@ -42,19 +42,22 @@ number=count-(currentPage-1)*pageSize;
 
 <%if (count == 0 ){%>
 	<p>등록된 강의가 없습니다<p>
-<%}else{
+<%}else{%>
+	<table><% 
 	for(int i = 0 ; i <productList.size(); i++){
 		productVO vo = (productVO)productList.get(i); 
 		
-%>
-		<p><%=vo.getP_num()%></p>
-		<p>강의이름 :
+%>	
+		<tr>
+		<td><%=number-- %></td>
+		<td><%=vo.getP_num()%></td>
+		<td>강의이름 :
 		<a href ="../Talent/Detail.jsp?p_num=<%=vo.getP_num() %>& pageNum=<%=currentPage %>">
 		<%=vo.getP_classname() %></a>
-		</p>
-		
+		</td>
+		</tr>
 	<% }%>
-	
+</table>	
 
 <%}%>
 
@@ -63,20 +66,20 @@ number=count-(currentPage-1)*pageSize;
     if (count > 0) {
         int pageCount = count / pageSize + ( count % pageSize == 0 ? 0 : 1);
 		 
-        int startPage = (int)(currentPage/1)*5+1;
-		int pageBlock=5;
+        int startPage = (int)(currentPage/10)* 10+1;
+		int pageBlock= 10;
         int endPage = startPage + pageBlock-1;
         if (endPage > pageCount) endPage = pageCount;
         
-        if (startPage > 1) {    %>
-        <a href="listTest.jsp?pageNum=<%= startPage - 5 %>">[이전]</a>
+        if (startPage > 10) {    %>
+        <a href="listTest.jsp?pageNum=<%= startPage - 10 %>">[이전]</a>
 <%      }
         for (int i = startPage ; i <= endPage ; i++) {  %>
         <a href="listTest.jsp?pageNum=<%= i %>">[<%= i %>]</a>
 <%
         }
         if (endPage < pageCount) {  %>
-        <a href="listTest.jsp?pageNum=<%= startPage + 5 %>">[다음]</a>
+        <a href="listTest.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
 <%
         }
     }

@@ -19,7 +19,19 @@
     transition: all 0.3s ease 0s;
     cursor: pointer;
     border: 0px;
-    text-align: center;
+    text-align: center;}
+ .btn_b {
+    width: 100px;
+    display: inline-block;
+    margin-top: 0px;
+    background: #aaa;
+    color: black;
+    font-size: 20px;
+    padding: 20px 0 20px 0;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    border: 0px;
+    text-align: center;  } 
 </style>
 <script type="text/javascript">
 	
@@ -68,6 +80,11 @@
 	String pageNum = request.getParameter("pageNum");
 	productDAO dbPro = productDAO.getInstance();
 	productVO vo = dbPro.getProduct(num);
+	
+	String t_email = vo.getP_email();//강사 닉네임을 불러오기위해
+	
+	tutorDAO m =tutorDAO.getInstance();
+	tutorVO v = m.getMember(t_email);
 
 %>
 	
@@ -81,36 +98,41 @@
 			<input type="hidden" id="StartDateTime" name="StartDateTime" value="오후7:30~오후10:30 (2019-06-12)">
 	</form>-->
 	<div>
+	  <form method="post" name="checkForm"
+	  action="checkPro" >
 		<h1>수업에서 수강신청하기 누르면 나옴</h1>
-		<p>수업번호: <%=vo.getP_num() %></p>
+		<p>내아이디:
+		<input type="text" readonly name="b_email" 
+		 value=" <%=(String)session.getAttribute("loginId") %>"></p><br>
+		
+		<input type="hidden" readonly name="b_productnumber" 
+		 value="  <%=vo.getP_num() %>">
+		 
+		<p>수업이름:
+		<input type="text" readonly name="b_class" 
+		 value=" <%=vo.getP_classname() %>"></p><br>
+		
+		<p>선생님 별명: <%=v.getT_nick() %><p>
+		<p>선생님 이메일: <%=vo.getP_email() %></p>
 		<p>^^^위에 수업번호를 선택해서 넘어왔다고 생각하고^^^</p>
-		<p>클래스명: <%=vo.getP_classname() %></p>
+		
 	</div>
 		<br>
 	<div>
 		<div>
-			<p>위치</p>
+			<p>위치<input type="text"  name="b_place" ></p>
 		</div>
 		<div>
-			<p>요일</p>
+			<p>요일<input type="text"  name="b_day" ></p>
 		</div>
 		
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 	
 	<div class="btn_red" onclick="setMode()">결제하기</div>
 	<input type="hidden" id="optionCount" name="optionCount" value="1">
+	<div class="btn_b" onclick="javascript:window.location='../Home/main.jsp'">일단 취소</div>
 	<%}else{ //로그아웃시 main.jsp로 이동
 				//session.invalidate();
 			%>
