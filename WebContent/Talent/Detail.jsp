@@ -17,11 +17,12 @@
 
 %>
 <body>
-	<%=vo.getP_num() %>
-	<%=vo.getP_classname() %>
-	<%=vo.getP_self() %>
-	<%=vo.getP_category() %>
-	<%=vo.getP_email() %>
+	<h1>강의 상세 페이지</h1>
+	<p><%=vo.getP_num() %>:::::::::::::이거 강의번호를 신청할때 넘겨야한다</p><br>
+	강의제목:::::::: <%=vo.getP_classname() %><br>
+	강사소개:::::::: <%=vo.getP_self() %><br>
+	카테고리:::::::: <%=vo.getP_category() %><br>
+	강사이메일:::::::: <%=vo.getP_email() %><br><br>
 	<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">강의신청</a>
 <% 
  }catch(Exception e){} 

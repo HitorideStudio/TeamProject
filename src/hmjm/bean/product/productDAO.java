@@ -1,5 +1,5 @@
 package hmjm.bean.product;
-/* ¼º¹Î ÀÛ¼º */
+/* °ÇÈÆ¼öÁ¤ */
 import java.sql.Connection;
 
 import java.sql.DriverManager;
@@ -72,7 +72,7 @@ public class productDAO {
 			pstmt.setString(2, product.getP_category());
 			pstmt.setString(3, product.getP_classname());
 			pstmt.setString(4, product.getP_self());
-			pstmt.setString(5, product.getP_time());
+			pstmt.setInt(5, product.getP_time());
 			pstmt.setInt(6, product.getP_cost());
 			pstmt.setString(7, product.getP_memo());
 			pstmt.setInt(8, product.getP_count_min());
@@ -110,7 +110,7 @@ public class productDAO {
 						vo.setP_category(rs.getString("p_category"));
 						vo.setP_classname(rs.getString("p_classname"));
 						vo.setP_self(rs.getString("p_self"));
-						vo.setP_time(rs.getString("p_time"));
+						vo.setP_time(rs.getInt("p_time"));
 						vo.setP_cost(rs.getInt("p_cost"));
 						vo.setP_memo(rs.getString("p_memo"));
 						vo.setP_count_min(rs.getInt("p_count_min"));
@@ -151,7 +151,7 @@ public productVO getProduct(int p_num)
 					vo.setP_category(rs.getString("p_category"));
 					vo.setP_classname(rs.getString("p_classname"));
 					vo.setP_self(rs.getString("p_self"));
-					vo.setP_time(rs.getString("p_time"));
+					vo.setP_time(rs.getInt("p_time"));
 					vo.setP_cost(rs.getInt("p_cost"));
 					vo.setP_memo(rs.getString("p_memo"));
 					vo.setP_count_min(rs.getInt("p_count_min"));
@@ -219,7 +219,7 @@ public List getProduct(int start, int end) throws Exception {
 						vo.setP_category(rs.getString("p_category"));
 						vo.setP_classname(rs.getString("p_classname"));
 						vo.setP_self(rs.getString("p_self"));
-						vo.setP_time(rs.getString("p_time"));
+						vo.setP_time(rs.getInt("p_time"));
 						vo.setP_cost(rs.getInt("p_cost"));
 						vo.setP_memo(rs.getString("p_memo"));
 						vo.setP_count_min(rs.getInt("p_count_min"));
