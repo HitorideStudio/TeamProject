@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>튜터정보 수정</title>
+<title>튜터정보 수정_k</title>
 <script type="text/javascript">
 function addFile(){
 	fileCnt = document.getElementById('fileCnt').value;							
