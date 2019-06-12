@@ -2,11 +2,12 @@
 <%@ page import = "hmjm.bean.tutor.*" %>
 <%@ page import = "hmjm.bean.member.*" %>
 <%@ page import = "hmjm.bean.product.*" %>
+<%@ page import = "hmjm.bean.buy.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상단 바</title>
+<title>상단 바KKKK</title>
 <style>
 #top, table {
 	width: 100%;
@@ -44,6 +45,8 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 	productDAO product = productDAO.getInstance();
 	productVO p = product.getProducts(m_email);
 	
+	buyDAO buyer = buyDAO.getInstance();
+	buyVO b = buyer.getBuy(m_email);
 	%>
 <body>
 	<table id="top" border="1">
@@ -67,7 +70,7 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 					<div class="sec_box_ele">
 						<img class="icon" alt="" src="/TeamProject/Images/Icon/kakao.jpg">
 						<p>신청한 수업</p>
-						<p>0건</p>
+						<p><%=b.getB_classname() %></p>
 					</div>
 					<div class="sec_box_ele">
 						<img class="icon" alt="" src="/TeamProject/Images/Icon/kakao.jpg">
@@ -78,6 +81,7 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 							
 							<p><%=p.getP_classname() %></p>
 							<p><%=p.getP_num() %></p>
+							
 							<%}%>
 					</div>
 
