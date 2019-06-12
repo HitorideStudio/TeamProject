@@ -52,11 +52,19 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 	<table id="top" border="1">
 		<tr>
 			<td class="section">
-			
+			<%if(e == null){ %>
+			<img src="../Images/TutorImg/user.png" width="50%"/><%=m_email %><br>
+			<a href="/TeamProject/Tutor/Register/menu.jsp">튜터 등록하세요</a><br>
+			<%} else {%>
 			<%=e.getT_num() %>
 				<%--등록한 이미지사진 불러오기 --%> <img src="../Images/TutorImg/<%=e.getT_selfimg()%>"
-				width="30%" height="30%" /> <%--해당 이메일의 닉네임 --%> <%=c.getM_name()%> 님<br> <a
-				href="/TeamProject/My/profile.jsp">정보 수정</a>&nbsp;<a>튜터 정보 수정</a><br>
+				width="30%" height="30%" /> <%--해당 이메일의 닉네임 --%> <%=c.getM_name()%> 님<br> 
+				<a href="/TeamProject/Tutor/Register/menu.jsp">튜터 정보 수정</a><br>
+				
+				<%}%>
+				<a href="/TeamProject/My/profile.jsp">정보 수정</a>&nbsp;<br>
+				
+				
 				<a href="/TeamProject/Log/logout.jsp">로그아웃</a>
 			</td>
 			
@@ -70,7 +78,12 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 					<div class="sec_box_ele">
 						<img class="icon" alt="" src="/TeamProject/Images/Icon/kakao.jpg">
 						<p>신청한 수업</p>
-						<p><%=b.getB_classname() %></p>
+						<%if(b == null){ %>
+							<p>수업을 신청하세요^^</p>
+							<%}else{ %>
+						<p>수업이름: <%=b.getB_classname() %></p>
+						<p>수업번호: <a href ="../Talent/Detail.jsp?p_num=<%=b.getB_productnumber() %>"><%=b.getB_productnumber() %></a> </p>
+							<%}%>
 					</div>
 					<div class="sec_box_ele">
 						<img class="icon" alt="" src="/TeamProject/Images/Icon/kakao.jpg">
@@ -78,10 +91,8 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 						<%if(p == null){ %>
 							<p>아직 나의 수업이 없어요</p>
 							<%}else{ %>
-							
-							<p><%=p.getP_classname() %></p>
-							<p><%=p.getP_num() %></p>
-							
+							<p>수업이름: <%=p.getP_classname() %></p>
+							<p>수업번호: <a href ="../Talent/Detail.jsp?p_num=<%=p.getP_num() %>"><%=p.getP_num() %></a> </p>
 							<%}%>
 					</div>
 

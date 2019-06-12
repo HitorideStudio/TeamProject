@@ -2,7 +2,7 @@ package hmjm.bean.classimg;
 /* 성민 */
 
 public class classimgVO {
-	private int ci_num;			//고유넘버(순서를 위함)
+	private int ci_num;			//고유넘버(순서를 위함)_시퀀스
 	private int ci_classnum;	//수업번호(p_num)	
 	private String ci_img;		//이미지 경로
 	

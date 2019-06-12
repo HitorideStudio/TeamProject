@@ -2,6 +2,9 @@
 <%@ page import ="hmjm.bean.product.*"%>
 <%@ page import = "hmjm.bean.tutor.*" %>
 <%@ page import = "hmjm.bean.member.*" %>
+<%@ page import = "hmjm.bean.classtime.*" %>
+<%@ page import = "hmjm.bean.classimg.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,7 +83,9 @@
 	String pageNum = request.getParameter("pageNum");
 	productDAO dbPro = productDAO.getInstance();
 	productVO vo = dbPro.getProduct(num);
-	
+	//시간이랑 위치 불러오기
+	classtimeDAO time = classtimeDAO.getInstance();
+	classtimeVO t = time.getClasstime(num);
 	String t_email = vo.getP_email();//강사 닉네임을 불러오기위해
 	
 	tutorDAO m =tutorDAO.getInstance();
@@ -89,6 +94,7 @@
 %>
 	
 <body>
+<jsp:include page="../Home/header.jsp" />
 	
 	<%if(session.getAttribute("loginId") != null){%>
 	
@@ -99,18 +105,27 @@
 	</form>-->
 	<div>
 	  <form method="post" name="checkForm"
-	  action="checkPro" >
+	  action="checkPro.jsp" >
+	  <!-- buy테이블에 입력 될 값
+	  	b_num(시퀀스)
+	  	b_email
+	  	b_productnumber
+	  	b_classname
+	  	b_place
+	  	b_day
+	   -->
 		<h1>수업에서 수강신청하기 누르면 나옴</h1>
 		<p>내아이디:
 		<input type="text" readonly name="b_email" 
-		 value=" <%=(String)session.getAttribute("loginId") %>"></p><br>
-		
+		 value="<%=(String)session.getAttribute("loginId") %>"></p><br>
+		<p>수업번호: <%=vo.getP_num() %>
+		<!-- product number값을 넘긴다 -->
 		<input type="hidden" readonly name="b_productnumber" 
-		 value="  <%=vo.getP_num() %>">
+		 value="<%=vo.getP_num() %>">
 		 
 		<p>수업이름:
-		<input type="text" readonly name="b_class" 
-		 value=" <%=vo.getP_classname() %>"></p><br>
+		<input type="text" readonly name="b_classname" 
+		 value="<%=vo.getP_classname() %>"></p><br>
 		
 		<p>선생님 별명: <%=v.getT_nick() %><p>
 		<p>선생님 이메일: <%=vo.getP_email() %></p>
@@ -120,9 +135,45 @@
 		<br>
 	<div>
 		<div>
-			<p>위치<input type="text"  name="b_place" ></p>
+			<p>위치<input type="text"  name="b_place" value="<%=t.getCt_place()%>" ></p>
 		</div>
 		<div>
+			<%if(t.getCt_mon()==null){%>
+			<%}else{%>
+			월: <%=t.getCt_mon() %>
+			<%} %><br>
+			<%if(t.getCt_tue()==null){%>
+			<%}else{%>
+			화: <%=t.getCt_tue() %>
+			<%} %><br>
+			<%if(t.getCt_wed()==null){%>
+			<%}else{%>
+			수: <%=t.getCt_wed() %>
+			<%} %><br>
+			<%if(t.getCt_thu()==null){%>
+			<%}else{%>
+			목: <%=t.getCt_thu() %>
+			<%} %><br>
+			<%if(t.getCt_fri()==null){%>
+			<%}else{%>
+			금: <%=t.getCt_fri() %>
+			<%} %><br>
+			<%if(t.getCt_sta()==null){%>
+			<%}else{%>
+			토: <%=t.getCt_sta() %>
+			<%} %><br>
+			
+			<%if(t.getCt_sun()==null){%>
+			<%}else{%>
+			일: <%=t.getCt_sun() %>
+			<%} %><br>
+			
+			<%if(t.getCt_day()==null){%>
+			<%}else{%>
+			데이수업<%=t.getCt_day() %>
+			<%} %>
+			
+					
 			<p>요일<input type="text"  name="b_day" ></p>
 		</div>
 		
@@ -130,7 +181,9 @@
 	
 
 	
-	<div class="btn_red" onclick="setMode()">결제하기</div>
+	<div class="btn_red" >
+	<input type ="submit" value="수업신청하기"></div>
+	
 	<input type="hidden" id="optionCount" name="optionCount" value="1">
 	<div class="btn_b" onclick="javascript:window.location='../Home/main.jsp'">일단 취소</div>
 	<%}else{ //로그아웃시 main.jsp로 이동
@@ -141,6 +194,9 @@
 					window.location='../Log/loginForm.jsp';
 						
 					</script>
+					
 			<%}%>
+	</form>
+	<jsp:include page="/Home/footer.jsp" />
 </body>
 </html>

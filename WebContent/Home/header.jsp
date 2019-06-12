@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="utf-8">
 <head>
-<title>헤더</title>
+<title>헤더kkk</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -19,7 +19,7 @@ body {
 
 /* Header/logo Title */
 .header {
-  padding: 20px;
+  padding: 5px;
   text-align: center;
   background: #1abc9c;
   color: white;
@@ -27,7 +27,7 @@ body {
 
 /* Increase the font size of the heading */
 .header h1 {
-  font-size: 40px;
+  font-size: 25px;
 }
 
 /* Style the top navigation bar */
