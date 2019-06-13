@@ -1,9 +1,11 @@
 <%@ page contentType = "text/html; charset=UTF-8" %>
-<%@ page import = "hmjm.bean.dao.messageDAO" %>
-<%@ page import = "hmjm.bean.vo.messageVO" %>
+<%@ page import = "hmjm.bean.message.messageDAO" %>
+<%@ page import = "hmjm.bean.message.messageVO" %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
-
+<head>
+<title>Message</title>
+</head>
 <%!
     int pageSize = 10; //한 화면에 보여줄 리스트 갯수
 %>
@@ -19,7 +21,6 @@
     int count = 0;
     int number= 0;
     
-    
     List articleList = null;
     messageDAO dbPro = messageDAO.getInstance();
     count = dbPro.getArticleCount(id);
@@ -29,14 +30,17 @@
     }
     number=count-(currentPage-1)*pageSize;
     
+    
 %>
 <html>
 <link href="style.css" rel="stylesheet" type="text/css">
+
 <body align="center">
 
 <%if(id == null){%>
 	<script>
-		alert("로그인필요");
+		alert("로그인이 필요합니다.");
+		window.location="/TeamProject/Log/loginForm.jsp";
 	</script>
 <%} %> 
 
@@ -51,6 +55,7 @@
 	<%for(int i = 0 ; i < articleList.size() ; i++) {
 		messageVO article = (messageVO)articleList.get(i);
 		String login = article.getS_receive();
+		//새 쪽지 알림
 		int newm = article.getS_count();
 		if(newm == 2){%>
 			<script>
@@ -62,12 +67,13 @@
 		    <td align="center" width="100">from <%=article.getS_send()%>
 		    	<input type="hidden" name="sender" value="<%=article.getS_send() %>"/></td>
 		    <td align="center" width="100">to <%=article.getS_receive()%></td>
-		    <td align="center" width="100"><%=article.getS_reg()%></td>
-		    <td align="left" width="375" colspan="3"><%=article.getS_content()%></td>
+		    <td align="center" width="90"><%=article.getS_reg()%></td>
+		    <td align="left" width="375"><%=article.getS_content()%></td>
 		    <td align="center">
-				<input type="submit" value="답장">
+				<input type="button" value="답장"
+					onclick="document.location.href='/TeamProject/Message/messageReplyForm.jsp?s_num=<%=article.getS_num()%>&sender=<%=article.getS_send()%>'"/>
 				<input type="button" value="삭제" 
-					onclick="document.location.href='messageDeleteForm.jsp?num=<%=article.getS_num()%>'"></td>
+					onclick="document.location.href='/TeamProject/Message/messageDeleteForm.jsp?num=<%=article.getS_num()%>'"/></td>
 		</tr>
 	<%}}}%>
 	</table>
@@ -75,28 +81,24 @@
 <%
     if (count > 0) {
         int pageCount = count / pageSize + ( count % pageSize == 0 ? 0 : 1);
-		 
         int startPage = (int)(currentPage/10)*10+1;
 		int pageBlock=10;
         int endPage = startPage + pageBlock-1;
         if (endPage > pageCount) endPage = pageCount;
-        
         if (startPage > 10) {    %>
-        <a href="message.jsp?pageNum=<%= startPage - 10 %>">[이전]</a>
+        	<a href="message.jsp?pageNum=<%= startPage - 10 %>">[이전]</a>
 <%      }
         for (int i = startPage ; i <= endPage ; i++) {  %>
-        <a href="message.jsp?pageNum=<%= i %>">[<%= i %>]</a>
+        	<a href="message.jsp?pageNum=<%= i %>">[<%= i %>]</a>
 <%
         }
         if (endPage < pageCount) {  %>
-        <a href="message.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
-<%
-        }
-    }
-%>
+        	<a href="message.jsp?pageNum=<%= startPage + 10 %>">[다음]</a>
+<%}}%>
 <br/><br/>
 </form>
-<jsp:include page="messageWriteForm.jsp" />
+
+
 </body>
 </html>
 

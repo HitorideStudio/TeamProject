@@ -75,7 +75,7 @@ body, html {
   color: white;
   display: none;
   padding: 100px 20px;
-  height: 50%;
+  height: 100%;
 }
 
 #Home {background-color: red;}

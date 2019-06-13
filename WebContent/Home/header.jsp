@@ -81,9 +81,9 @@ body {
 </style>
 <script language="javascript">
 		function openRealtimetalk(){
-			url="/TeamProject/My/qnatutee.jsp";
+			url="/TeamProject/Message/message.jsp";
 			//새로운 윈도우로 열기
-			open(url, "qnatutee",  "toolbar=no, location=no,status=no,menubar=no,resizable=no,width=400, height=660");
+			open(url, "qnatutee",  "toolbar=no, location=no,status=no,menubar=no,resizable=no,width=900, height=400");
 		}
 	</script>
 </head>
@@ -101,7 +101,7 @@ body {
   		statebarName ="회원가입";	
   		stateURL="/TeamProject/Register/register.jsp";
 	}else{
-		loginbarName="실시간 톡";	//로그아웃기능은, 수업신청서안에서 사용할것_by.sm
+		loginbarName="쪽지";	//로그아웃기능은, 수업신청서안에서 사용할것_by.sm
 		logURL="/TeamProject/My/qnatutee.jsp";
 		
 		statebarName ="수업신청서";	
@@ -122,6 +122,7 @@ body {
 	<a href="/TeamProject/Log/logout.jsp"class="right">로그아웃</a><%}%>	
   <a href="/TeamProject/Tutor/Register/menu.jsp"class="right">튜터등록</a>
   <a href="<%=stateURL%>"class="right"><%=statebarName%></a>
+  
 				<%
 					if(session.getAttribute("loginId")== null){%>
 						<a href="<%=logURL%>"class="right"><%=loginbarName %></a>

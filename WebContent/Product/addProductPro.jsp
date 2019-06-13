@@ -11,9 +11,17 @@
 <%
 	productDAO dao = productDAO.getInstance();
 	dao.insertProduct(vo);	/*작성한 정보를 삽입*/
+	
+	//최종 시퀀스 값이 얼마인지 구해야한다.
+	int productNum = dao.getProductNum();
+		
+	//세션set(상품 고유 번호(시퀀스)를 넘긴다.)
+	//int형을 곧바로 String 으로 캐스트 변환하려고하기때문에 에러발생 ->String.valueOf()로 해결
+	session.setAttribute("productNum",String.valueOf(productNum));	
 %>
 
 <script>
+	var num ="<%=productNum%>";
 	alert("수업이 등록되었습니다.");
 </script>
-<META http-equiv=refresh content="0;url=../Tutor/Register/menu.jsp">
+<META http-equiv=refresh content="0;url=/TeamProject/Product/addClasstime.jsp">

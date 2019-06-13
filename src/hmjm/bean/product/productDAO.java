@@ -237,6 +237,31 @@ public productVO getProduct(int p_num)
 		return x; 
 	}
 	
+	//최종 시퀀스 값 검색하기_ok
+		public int getProductNum() {
+			int x = 0;
+
+			try {
+				conn = getConnection();
+
+				String sql ="select last_number from user_sequences where sequence_name=upper('product_seq')";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+
+				if(rs.next()) {
+					x = rs.getInt(1);	//첫번째 컬럼 값 꺼내기(1부터 시작하기때문)
+				}
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+				if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+				if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			}
+			return x-1;	//최종 시퀀스 값은 +1된 값이 나오기 때문에 1을 빼줌
+		}
+	
+	
 	
 	
 	
