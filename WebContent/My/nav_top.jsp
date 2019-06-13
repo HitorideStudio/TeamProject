@@ -83,6 +83,7 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 							<%}else{ %>
 						<p>수업이름: <%=b.getB_classname() %></p>
 						<p>수업번호: <a href ="../Talent/Detail.jsp?p_num=<%=b.getB_productnumber() %>"><%=b.getB_productnumber() %></a> </p>
+						<p>상세보기: <a href ="/TeamProject/My/myClass.jsp?p_num=<%=b.getB_productnumber() %>">테스트경로</a> </p>	
 							<%}%>
 					</div>
 					<div class="sec_box_ele">
@@ -93,6 +94,7 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 							<%}else{ %>
 							<p>수업이름: <%=p.getP_classname() %></p>
 							<p>수업번호: <a href ="../Talent/Detail.jsp?p_num=<%=p.getP_num() %>"><%=p.getP_num() %></a> </p>
+							<p>상세보기: <a href ="/TeamProject/My/myClass.jsp?p_num=<%=p.getP_num() %>">테스트경로</a> </p>
 							<%}%>
 					</div>
 

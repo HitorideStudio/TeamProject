@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" %>
 <%@ page import = "hmjm.bean.product.*" %>
+<%@ page import = "hmjm.bean.buy.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 </head>
 
 <%
+
 	String id = (String) session.getAttribute("loginId");
 	int num = Integer.parseInt(request.getParameter("p_num"));
 	String pageNum = request.getParameter("pageNum");
@@ -15,6 +17,9 @@
 	try{
 		productDAO dbPro = productDAO.getInstance();
 		productVO vo = dbPro.getProduct(num);
+		
+		//String ed = vo.getP_email();
+		//boolean result = id.equals(ed);
 	
 
 %>
@@ -27,12 +32,8 @@
 	강사소개:::::::: <%=vo.getP_self() %><br>
 	카테고리:::::::: <%=vo.getP_category() %><br>
 	강사이메일:::::::: <%=vo.getP_email() %><br><br>
-	
-	<% if(vo.getP_email() == id){%>
-	 내가 등록한 강의입니다
-	 <%}else{%>
 	<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">강의신청</a>
-	<%}%>
+	
 <% 
  }catch(Exception e){} 
 %>
