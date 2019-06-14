@@ -17,17 +17,14 @@
 
 .eachButton {display:table-cell;}
 
-</style>
 
-<style>
 * {box-sizing: border-box}
 
 /* Set height of body and the document to 100% */
 body, html {
   height: 100%;
   margin: 0;
-  font-family: Arial;
-}
+  font-family: Arial;}
 
 /* Style tab links */
 .tablink {
@@ -39,20 +36,17 @@ body, html {
   cursor: pointer;
   padding: 14px 16px;
   font-size: 17px;
-  width: 50%;
-}
+  width: 50%;}
 
 .tablink:hover {
-  background-color: #777;
-}
+  background-color: #777;}
 
 /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
   color: white;
   display: none;
   padding: 100px 20px;
-  height: 100%;
-}
+  height: 100%;}
 
 #Home {background-color: red;}
 #News {background-color: green;}
@@ -89,16 +83,14 @@ document.getElementById("defaultOpen").click();
 	
 	<div>
 		<div >
-		<%
-			if (session.getAttribute("loginId") == null) {
-		%>
-			<script>
+		<%if (session.getAttribute("loginId") == null) {%>
+		<script>
 				alert("로그인 후 이용바랍니다.");
 				window.location = '/TeamProject/Log/loginForm.jsp';
 			</script>
 
-		<%
-			} else {   
+		<%} else { 
+			
 				String m_email = (String) session.getAttribute("loginId");
 				memberDAO manager = memberDAO.getInstance();
 				memberVO c = manager.getMember(m_email);
@@ -108,28 +100,26 @@ document.getElementById("defaultOpen").click();
 		<div>
 			
 			
-				<div id="Home" class="tabcontent">
-					<%
-				if (e == null) {
-			%>
+		<div id="Home" class="tabcontent">
+			<%if (e == null) {%>
 			<input type="button" value="튜터등록"
 				onclick="javascript:window.location='/TeamProject/Tutor/tutorRegister2.jsp'">
 
-			<%} else {%>
+			<%}else{%>
 			<input type="button" value="튜터수정"
 				onclick="javascript:window.location='/TeamProject/Tutor/tutorModifyForm.jsp'">
 			<%}%>
 			
 				</div>
 				<div id="About" class="tabcontent">
-				<% if( e == null){%>
+				<%if( e == null){%>
 				<input type="button" value="튜터 등록 먼저 하세요"
 				onclick="javascript:window.location='/TeamProject/Tutor/tutorRegister2.jsp'">
-				<%} else {%>
+				<%}else{%>
 					<input type="button" value="강의등록"
 				onclick="javascript:window.location='/TeamProject/Product/addProduct.jsp'">
-				<%} 
-				} %>
+					<%} 
+				}%>
 				</div>
 			</div>		
 		</div>
