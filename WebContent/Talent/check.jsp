@@ -4,6 +4,7 @@
 <%@ page import = "hmjm.bean.member.*" %>
 <%@ page import = "hmjm.bean.classtime.*" %>
 <%@ page import = "hmjm.bean.classimg.*" %>
+<%@ page import = "java.util.List" %>
 
 <!DOCTYPE html>
 <html>
@@ -90,6 +91,7 @@
 	
 	tutorDAO m =tutorDAO.getInstance();
 	tutorVO v = m.getMember(t_email);
+	
 
 %>
 	
@@ -133,6 +135,9 @@
 		
 	</div>
 		<br>
+	<div>
+	
+	</div>
 	<div>
 		<div>
 			<p>위치<input type="text"  name="b_place" value="<%=t.getCt_place()%>" ></p>

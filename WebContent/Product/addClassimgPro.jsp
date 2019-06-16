@@ -1,112 +1,79 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="hmjm.bean.classimg.*"%>
+<%@ page import="hmjm.bean.classimg.classimgDAO"%>
+<%@ page import="hmjm.bean.product.productDAO"%>
 
-<%--파일 업로드 처리를 위한 MultipartRequest 객체를 import --%>
-<%@page import="com.oreilly.servlet.MultipartRequest"%>
-<%--파일 중복처리 객체 import --%>
+<%--파일을 업로드 시키기위함 --%>
+<%@page import="java.io.File" %>
+<%@page import="java.util.Enumeration" %>
+<%-- cos.jar파일에 있는 라이브러리 import, 중복된 파일이름에 대한 정책 --%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="java.util.*" %>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
 
-
-
-<%@page import="java.io.File"%>
-<%@page import="java.util.Enumeration"%>
-<%@ page import="java.sql.*"%>
-
-
-
-<% request.setCharacterEncoding("UFT-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="imgvo" scope="page" class="hmjm.bean.classimg.classimgVO"/>
 <jsp:setProperty name="imgvo" property="*"/>
 
+<%--성민 작성0614 --%>
 <%
-	String uploadPath = request.getRealPath("/Images/ProductImg");
-	out.println("절대 경로: "+uploadPath+"<br>");
-	
-	int maxSize = 2 * 1024 * 1024;	//파일 용량 제한:(20M)
-	
-	String fileName1 = ""; 			// 중복처리된 이름
-	String originalName1 = ""; 		// 중복 처리전 실제 원본 이름
-	String fileType = ""; 			// 파일 타입
-	long fileSize = 0; 				// 파일 사이즈
-	
-	MultipartRequest multi = null;
-
-		//?
-	//ServletContext context = getServletContext();
-	//realFolder = context.getRealPath(saveFolder);
+		//상품번호 세션으로 받아오기
+		String productNum = (String)session.getAttribute("productNum");
+		String directory = application.getRealPath("/Images/ClassImg/");
 		
-	ArrayList<String> filename = new ArrayList<String>();
-	
-	try {
-		//업로드 경로, 파일 최대  용량, 인코딩타입(한글처리), 중복파일명에 대한 기본 정책
-		multi = new MultipartRequest(request,uploadPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+		//상품번호, 경로 확인 용
+		//System.out.println("상품번호 받아오는가 :"+productNum);
+		//System.out.println("=uploadFilePath="+directory);
+		
+		//test용, 추후 삭제할것
+		System.out.println("addClassimgPro.jsp: 세션상품번호"+productNum);
+		
+		int maxSize = 1024 *1024 * 100;	//최대 용량
+		String encType = "utf-8";
+		MultipartRequest multipartRequest = null;
+		try{
+			multipartRequest = new MultipartRequest(request, directory,
+					maxSize, encType, new DefaultFileRenamePolicy());
+			
+			/*이미지 여러개 업로드하기*/
+			Enumeration<?> fileNames = multipartRequest.getFileNames();
+			while(fileNames.hasMoreElements()){
 				
-		
-		
-		//전송한 전체 파일이름들을 가져온다.
-		Enumeration<?> files = multi.getFileNames();
-		
-	
-		while (files.hasMoreElements()) {
-			//form 태그에서  <input type="file" name="여기서 지정한 이름"/>을 가져온다.
-			String file1 = (String) files.nextElement(); //파일 input에 저장한 이름을 가져옴
+				String parameter = (String)fileNames.nextElement();
+				String fileName = multipartRequest.getOriginalFileName(parameter);
+				String fileRealName = multipartRequest.getFilesystemName(parameter);
+				
+				//파일 이 없을경우, 계속 실행시키기위함
+				if(fileName == null) continue;
+				
+				/*시큐어 코딩*/
+				if(!fileName.endsWith(".jpg") && !fileName.endsWith(".png")
+						&& !fileName.endsWith(".bmp")&& !fileName.endsWith(".gif")){
+					
+					File file = new File(directory + fileRealName);
+					file.delete();
+					%>
+					<script>
+						var filename="<%= file.getName()%>"
+						alert(filename+"는 업로드할 수 없는 확장자의 파일입니다.");
+					</script>
+					<%
+					
+				}else{
+					classimgDAO cidao = classimgDAO.getInstance();
+					
+					int ci_num = Integer.parseInt(productNum);
+					cidao.insertClassimg1(ci_num, fileName, fileRealName);
+					%>
+					<script>
+						var ci_num ="<%=ci_num%>";
+						var fileName ="<%=fileName%>";
+						var fileRealName ="<%=fileRealName%>";
+						alert("[상품번호 :"+ci_num+"]\n[파일명:"+fileName+"]이 등록되었습니다.");
+					</script>
+					
+					<META http-equiv=refresh content="0; url=/TeamProject/Home/main.jsp">
+<%				}
+			}
 			
-			//그에 해당하는 실제 파일 이름을 가져옴.
-			originalName1 = multi.getFilesystemName(file1);
-			
-			//파일명이 중복될 경우 중복 정책에 의해 뒤에 1,2,3 처럼 붙어 unipue하게 파일명을 생성하는데, 
-			//이때 생성도니 이름을 filesystemName이라 하여 그 이름 정보를 가져온다.(중복 처리)
-			fileName1 = multi.getFilesystemName(file1);
-			
-			//파일 타입 정보를 가져옴
-			fileType = multi.getContentType(file1);
-			
-			//input file name에 해당하는 실제 파일을 가져온다.
-			File file = multi.getFile(file1);
-			
-			//그 파일 객체의 크기를 알아낸다.
-			fileSize = file.length();
-			
-		}
-	
-	} catch (Exception e) {/*예외 처리*/
-		e.printStackTrace();
-	}
-	
-	//form 내의 input name=""의  value를 가져옴
-	/*
-    private int ci_num;			//고유넘버(순서를 위함)_시퀀스
-	private int ci_classnum;	//수업번호(p_num)	
-	private String ci_img;		//이미지 경로 
- 	*/	
-	//String ci_img = multi.getParameter("ci_img");
-	//int p_time = Integer.parseInt(multi.getParameter("p_time"));
-	
-	
-	//imvo.setCi_img(ci_img);
-
+		}catch(Exception e){	e.printStackTrace(); }
 %>
-<%
-	//해당 상품의 번호를 받아온다.
-	//int proudctnum =Integer.parseInt(request.getParameter("productnum"));//form에서 보낸거받기
-	//imgvo.setCi_classnum(proudctnum);
-	
-//	classimgDAO dao = classimgDAO.getInstance();
-//	dao.insertClassimg(imgvo);
-	
-	
-%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-업로드 된 파일명 :
-
-<%for(int i=0; i<filename.size();i++){%>
-<strong><%=filename.get(i)%></strong>
-<%}%>
-</body>
-</html>
+		

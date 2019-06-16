@@ -277,14 +277,6 @@ input[type=number] {
 				</div>
 			</div>
 
-			<div class="form-group row">
-				<label class="col-sm-2">수업 사진</label>
-				<div class="col-sm-5">
-					<input type="file" name="" class="form-control">
-					<!-- 여러장 업로드시 multiple사용
-					<input multiple="multiple" type="file" name="" class="form-control">-->
-					
-				</div>
 				
 			</div>
 		

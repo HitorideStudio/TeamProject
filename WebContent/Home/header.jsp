@@ -110,11 +110,6 @@ body {
 %>
 <body>
 
-<div class="header">
-  <h1>Shall We</h1>
-  <p>우리 같이 배워볼까요?</p>
-</div>
-
 <div class="navbar">
  <a href="/TeamProject/Home/main.jsp"class="left">쉘위</a>
   <%//My/Application.jsp에 로그아웃기능 추가하면 삭제할것.
@@ -132,5 +127,9 @@ body {
 					<%}%>
 </div>
 
+<div class="header">
+  <h1>Shall We</h1>
+  <p>우리 같이 배워볼까요?</p>
+</div>
 </body>
 </html>

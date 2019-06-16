@@ -10,34 +10,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>쉘위?kkkkk</title>
 <style>
-* {
-  box-sizing: border-box;
-}
+* {box-sizing: border-box;}
 
 /* Style the body */
 body {
   font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}
+  margin: 0;}
 
 /* Header/logo Title */
 .header {
   padding: 20px;
   text-align: center;
   background: #1abc9c;
-  color: white;
-}
+  color: white;}
 
 /* Increase the font size of the heading */
-.header h1 {
-  font-size: 40px;
-}
+.header h1 { font-size: 40px;}
 
 /* Style the top navigation bar */
 .navbar {
   overflow: hidden;
-  background-color: #333;
-}
+  background-color: #333;}
 
 /* Style the navigation bar links */
 .navbar a {
@@ -46,27 +39,22 @@ body {
   color: white;
   text-align: center;
   padding: 14px 20px;
-  text-decoration: none;
-}
+  text-decoration: none;}
 
 /* Right-aligned link */
-.navbar a.right {
-  float: right;
-}
+.navbar a.right {float: right;}
 
 /* Change color on hover */
 .navbar a:hover {
   background-color: #ddd;
-  color: black;
-}
+  color: black;}
 
 /* Column container */
 .row {  
   display: -ms-flexbox; /* IE10 */
   display: flex;
   -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-}
+  flex-wrap: wrap;}
 
 /* Create two unequal columns that sits next to each other */
 /* Sidebar/left column */
@@ -74,30 +62,26 @@ body {
   -ms-flex: 30%; /* IE10 */
   flex: 30%;
   background-color: #f1f1f1;
-  padding: 20px;
-}
+  padding: 20px;}
 
 /* Main column */
 .main {   
   -ms-flex: 70%; /* IE10 */
   flex: 70%;
   background-color: white;
-  padding: 20px;
-}
+  padding: 20px;}
 
 /* Fake image, just for this example */
 .fakeimg {
   background-color: #aaa;
   width: 100%;
-  padding: 20px;
-}
+  padding: 20px;}
 
 /* Footer */
 .footer {
   padding: 120px;
   text-align: center;
-  background: #ddd;
-}
+  background: #ddd;}
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
@@ -120,6 +104,7 @@ body {
 	
 		<%--상단 카테고리bar: header --%>
 		<jsp:include page="header.jsp" />
+		<jsp:include page="category.jsp" />
 		<jsp:include page="/listTest.jsp" />
 	
 	
@@ -149,8 +134,6 @@ body {
     <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
   </div>
 </div>-->
-	
-	
 	
 		<jsp:include page="/Home/footer.jsp" />
 	

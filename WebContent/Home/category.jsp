@@ -2,88 +2,70 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
-  margin: 0 auto;
-  /*
-	width: 1080;
-	height: 80px;
-	margin: 0 180px;
-	*/	
 }
 
-/*전체 nav bar*/
 .navbar {
-	width:1080px;
-	height:240px;
-	margin: 0 180px;
   overflow: hidden;
-  background-color: white; /*white*/
+  background-color: #333;
 }
 
-.navbar a { /*havor하면 나오는 링크*/
+.navbar a {
   float: left;
-  font-size: 14px;
-  color: black; /*??*/
+  font-size: 16px;
+  color: white;
   text-align: center;
-  padding: 15px 10px;
+  padding: 14px 16px;
   text-decoration: none;
 }
 
-.subnav {
+.dropdown {
   float: left;
   overflow: hidden;
 }
 
-.subnav .subnavbtn {
-  font-size: 15px;  
+.dropdown .dropbtn {
+  font-size: 16px;  
   border: none;
   outline: none;
-  color: black;
-  padding: 14px 20px;
+  color: white;
+  padding: 14px 16px;
   background-color: inherit;
   font-family: inherit;
-  font-weight:bold;
   margin: 0;
 }
-.subnavbtn:hover{/*border때문에 글씨가 살짝 내려감_ok*/
-  border-top:1.5px solid black;
-  border-right:1.5px solid black;
-  border-left:1.5px solid black;
-  border-bottom:1.5px solid white;
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
 }
 
-
-.subnav-content {
+.dropdown-content {
   display: none;
   position: absolute;
-  left: 0;
-  background-color: white;
-  width: 100%;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  margin: 0 180px;
 }
 
-.subnav-content a {
-  float: left;
+.dropdown-content a {
+  float: none;
   color: black;
+  padding: 12px 16px;
   text-decoration: none;
+  display: block;
+  text-align: left;
 }
 
-.subnav-content a:hover {
-  color: gray;
-}
-.subnav-content:hover {/*위아래가 이어져야함*/
-  border-top:1.5px solid black;
-  border-right:1.5px solid black;
-  border-left:1.5px solid black;
-  border-bottom:1.5px solid black;
+.dropdown-content a:hover {
+  background-color: #ddd;
 }
 
-.subnav:hover .subnav-content {
+.dropdown:hover .dropdown-content {
   display: block;
 }
 </style>
@@ -91,38 +73,44 @@ body {
 <body>
 
 <div class="navbar">
-  <div class="subnav">
-    <button class="subnavbtn">인기수업 <i class="fa fa-caret-down"></i></button>
-    <div class="subnav-content">
-      <span><a href="#link1">상품 1</a></span>
-      <span><a href="#link2">상품 2</a></span>
-    </div>
-  </div> 
-  <div class="subnav">
-    <button class="subnavbtn">디자인 <i class="fa fa-caret-down"></i></button>
-    <div class="subnav-content">
-      <a href="#link1">상품 1</a>
-      <a href="#link2">상품 2</a>
-      <a href="#link3">상품 3</a>
-      <a href="#link4">상품 4</a>
-    </div>
-  </div> 
-  <div class="subnav">
-    <button class="subnavbtn">실무역량 <i class="fa fa-caret-down"></i></button>
-    <div class="subnav-content">
-      <span><a href="#link1">상품 1</a></span>
-      <span><a href="#link2">상품 2</a></span>
-      <span><a href="#link1">상품 1</a></span>
-      <span><a href="#link2">상품 2</a></span>
-      <span><a href="#link1">상품 1</a></span>
-      <span><a href="#link2">상품 2</a></span>
-      <span><a href="#link1">상품 1</a></span>
-      <span><a href="#link2">상품 2</a></span>
+  
+  <div class="dropdown">
+    <button class="dropbtn">디자인 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
     </div>
   </div>
+   
+   <div class="dropdown">
+    <button class="dropbtn">영상 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div> 
+
+
+<div class="dropdown">
+    <button class="dropbtn">외국어
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div> 
 </div>
 
+<h3>카테고리 나누기</h3>
+<p>링크로 갈 것인가 ajax?로 할 것인가</p>
 
 </body>
-</html>
 </html>

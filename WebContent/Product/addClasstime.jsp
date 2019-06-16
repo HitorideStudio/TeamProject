@@ -3,7 +3,7 @@
 <%@ page import="hmjm.bean.tutor.*"%>
 <%@ page import="hmjm.bean.product.*"%>
 
-<%-- 19.06.11 성민 작성 , 미완성, --%>
+<%-- 19.06.11 성민 작성 , 미완성,kkkk --%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -108,9 +108,9 @@ input[type=number] {
 				<label class="col-sm-2">수업 장소</label>
 				<div class="col-sm-3">
 					<select id="ct_place" name="ct_place">
-						<option value="1">강남</option>
-						<option value="2">신촌홍대</option>
-						<option value="3">잠실</option>
+						<option value="강남">강남</option>
+						<option value="신촌">신촌홍대</option>
+						<option value="잠실">잠실</option>
 					</select>
 				</div>
 			</div>
