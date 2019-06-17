@@ -7,8 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>강의 상세페이지</title>
+<meta charset="utf-8">
+<title>강의 상세페이지kkkk</title>
 </head>
 
 <%
@@ -17,7 +17,7 @@
 	int num = Integer.parseInt(request.getParameter("p_num"));
 	String pageNum = request.getParameter("pageNum");
 	
-	try{
+	
 		productDAO dbPro = productDAO.getInstance();
 		productVO vo = dbPro.getProduct(num);
 		
@@ -28,16 +28,23 @@
 		classimgDAO aa  = classimgDAO.getInstance();
 		classimgVO bb = aa.getImg(num);
 		
-		//사진 불러오기 할려고 했는데 이건 아닌 듯....
-		int startRow = 1;
-		int endRow = 1;
+		
+		
+		//사진 불러오기 할려고 했는데 이건 아닌 듯....미완성
+		if (pageNum == null) { pageNum = "1"; }
+		int pageSize = 10;
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
 		int count = 0;
 		int number=0;
+		
 		List classimgList = null;
 		classimgDAO pic = classimgDAO.getInstance();
 		count = pic.getClassimgCount(num);
+		
 		if (count > 0) {
-			classimgList = pic.getClassimg(startRow, endRow);
+			classimgList = pic.getClassimg(num,startRow, endRow);
 		}
 	
 
@@ -51,17 +58,24 @@
 	강사소개:::::::: <%=vo.getP_self() %><br>
 	카테고리:::::::: <%=vo.getP_category() %><br>
 	강사이메일:::::::: <%=vo.getP_email() %><br><br>
-	사진테스트경로>>><%=bb.getCi_name() %>
+<% 	try{%>	
+	<% if(bb.getCi_name()==null){%>
+	error
+	<%}else{ %>
 	
-	<%if(count == 0){
-	}else{%>
-	<% for(int i = 0 ; i < classimgList.size(); i++){
-		classimgVO g = (classimgVO)classimgList.get(i);%>
+		<%if(count == 0){%>
+		test
+		<%}else{%>
+			<% for(int i = 0 ; i < classimgList.size(); i++){
+			classimgVO g = (classimgVO)classimgList.get(i);%>
 		
-		<%=bb.getCi_name() %>
-		
+			<img src="/Images/classimg/<%=g.getCi_name()%>"
+			width="50%" height="50%">
+			<%}%>
 		<%}%>
-		<%}%>
+	<%}%>
+
+
 	<div>
 	수업가능시간::::::::
 			<%if(t.getCt_mon()==null){%>
@@ -98,12 +112,15 @@
 			<%}else{%>
 			데이수업<%=t.getCt_day() %>
 			<%} %>
+
+<% 
+	}catch(Exception e){} 
+%>	
+			
 		</div><br>
 	<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">강의신청</a>
 	
-<% 
- }catch(Exception e){} 
-%>
+
 <jsp:include page="/Home/footer.jsp" />	
 </body>
 </html>

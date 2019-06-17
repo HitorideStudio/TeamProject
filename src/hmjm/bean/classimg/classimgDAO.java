@@ -112,7 +112,7 @@ public class classimgDAO {	/*성민 작성*/
 	
 	
 	//(해당 상품번호의) 이미지 정보(상품번호,이미지경로) 꺼내기_미완성
-	public List getClassimg(int start, int end) throws Exception {
+	public List getClassimg(int cnum, int start, int end) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -120,9 +120,13 @@ public class classimgDAO {	/*성민 작성*/
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(
-					"select * from classimg order by ci_classnum desc,?,?");
-			pstmt.setInt(1, start); 
-			pstmt.setInt(2, end);
+					"select ci_num,ci_classnum,ci_name,ci_realname,r"
+					+" from (select ci_num,ci_classnum,ci_name,ci_realname,rownum r "
+					+" from (select * from classimg where ci_classnum=? order by ci_num)"
+					+" order by ci_num) where r>=? and r<=?");
+			pstmt.setInt(1, cnum);
+			pstmt.setInt(2, start); 
+			pstmt.setInt(3, end);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				classimgList = new ArrayList(end); 
