@@ -20,12 +20,11 @@
 	String pageNum = request.getParameter("pageNum");
 	
 	
-		productDAO dbPro = productDAO.getInstance();
-		productVO vo = dbPro.getProduct(num);
+		
 		
 		classtimeDAO time = classtimeDAO.getInstance();
 		classtimeVO t = time.getClasstime(num);
-		String t_email = vo.getP_email();//강사 닉네임을 불러오기위해
+		//String t_email = vo.getP_email();//강사 닉네임을 불러오기위해
 		
 		classimgDAO aa  = classimgDAO.getInstance();
 		classimgVO bb = aa.getImg(num);
@@ -42,7 +41,10 @@
 				System.out.println("구매정보**b**"+b);
 				
 				//System.out.println("구매한경우강의넘버**bbb**"+bbb);
-				productVO vc = dbPro.getProduct2(id);
+				productDAO dbPro = productDAO.getInstance();
+				productVO vo = dbPro.getProduct(num);
+				productVO vc = dbPro.getProduct2(id,num);
+				productVO vd = dbPro.getProduct4(id); //수정해야 한다
 				
 				
 				//내가 등록한 강의 번호	
@@ -172,15 +174,23 @@ if(id!=null){
 				if(bbb==num){%>
 					튜터o 내가 구매한 강의
 					<%}else{
-						int vv = vc.getP_num();
-						if(vv==num){%>
-							내가 등록한 강의
-							<%}else{%>
-						<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">튜터o구매이력o 신청하기</a>
-							<%}
+							
+							if(vd==null){%>
+									<a href ="/TeamProject/Talent/check.jsp?p_num=<%=vo.getP_num() %>">
+									튜터o 판매글없다>> 신청하기</a>
+				
+									<%}else{
+										
+										if(vc!=null){%>
+											내가등록한강의
+										<%}else{%>
+											<a href ="/hmjm/Talent/check.jsp?p_num=<%=vo.getP_num() %>">
+											튜터o 판매글o 이건 내강의가 아니다>>신청하기</a>
+											<%}
+										}
 						}
 			}else{%>
-				<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">튜터o 구매이력x 신청하기</a>
+				<a href ="/TeamProject/Talent/check.jsp?p_num=<%=vo.getP_num() %>">튜터o 구매이력x 신청하기</a>
 				<%}
 
 	}else{
@@ -190,21 +200,21 @@ if(id!=null){
 				if(bbb==num){%>
 					튜터x 내가 구매한 강의
 					<%}else{%>
-						<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">튜터x구매이력o 신청하기</a>
+						<a href ="/TeamProject/Talent/check.jsp?p_num=<%=vo.getP_num() %>">튜터x구매이력o 신청하기</a>
 						<%}
 			}else{%>
-				<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">튜터x 구매이력x 신청하기</a>
+				<a href ="/TeamProject/Talent/check.jsp?p_num=<%=vo.getP_num() %>">튜터x 구매이력x 신청하기</a>
 				<%}
 
 			}
 	
 	
 	}else{%>
-		<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">비로그인 신청하기</a>
+		<a href ="/hmjm/Talent/check.jsp?p_num=<%=vo.getP_num() %>">비로그인 신청하기</a>
 		<%}
 
 
-%>
+%>	
 	
 
 <jsp:include page="/Home/footer.jsp" />	

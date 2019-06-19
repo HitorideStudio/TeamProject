@@ -71,8 +71,8 @@ classimgDAO aa  = classimgDAO.getInstance();//강의 등록사진 불러오기
 %>	
 	
 		<div class="rank">
-		<%=number-- %>
-		<%=vo.getP_num()%>
+		
+		강의번호 :<%=vo.getP_num()%>
 		강의이름 :
 		<a href ="/TeamProject/Talent/Detail.jsp?p_num=<%=vo.getP_num()%>& pageNum=<%=currentPage %>"><%=vo.getP_classname() %></a>
 		

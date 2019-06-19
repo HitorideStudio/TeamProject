@@ -79,9 +79,9 @@ body {
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="/TeamProject/Home/cateSub.jsp?c_code=101">포토샵</a>
+      <a href="/TeamProject/Home/cateSub.jsp?c_code=102">일러스트레이터</a>
+      
     </div>
   </div>
    
@@ -90,9 +90,9 @@ body {
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="/TeamProject/Home/cateSub.jsp?c_code=201">프리미어</a>
+      <a href="/TeamProject/Home/cateSub.jsp?c_code=202">에프터이펙트</a>
+      
     </div>
   </div> 
 
@@ -102,15 +102,12 @@ body {
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+      <a href="/TeamProject/Home/cateSub.jsp?c_code=301">영어</a>
+      <a href="/TeamProject/Home/cateSub.jsp?c_code=302">중국어</a>
+     
     </div>
   </div> 
 </div>
-
-<h3>카테고리 나누기</h3>
-<p>링크로 갈 것인가 ajax?로 할 것인가</p>
 
 </body>
 </html>

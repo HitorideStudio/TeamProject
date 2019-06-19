@@ -173,7 +173,88 @@ public productVO getProduct(int p_num)
 	    }
 //해당 번호의 수업 정보를 가져온다. _현재  파라미터 이메일로 함, 추후 p_num으로 변경할 것 -..?
 		//e_mail로 정보 꺼내고 있는 중
-	public productVO getProduct2(String p_email)
+	public productVO getProduct2(String p_email,int num)
+			throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		productVO vo = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(
+					"select * from product where p_email = ? and p_num=?");
+			pstmt.setString(1, p_email);
+			pstmt.setInt(2, num);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				vo = new productVO();
+				vo.setP_num(rs.getInt("p_num"));
+				vo.setP_email(rs.getString("p_email"));
+				vo.setP_category(rs.getString("p_category"));
+				vo.setP_classname(rs.getString("p_classname"));
+				vo.setP_self(rs.getString("p_self"));
+				vo.setP_time(rs.getInt("p_time"));
+				vo.setP_cost(rs.getInt("p_cost"));
+				vo.setP_memo(rs.getString("p_memo"));
+				vo.setP_count_min(rs.getInt("p_count_min"));
+				vo.setP_count_max(rs.getInt("p_count_max"));
+				vo.setP_class1(rs.getString("p_class1"));
+				vo.setP_class2(rs.getString("p_class2"));
+				vo.setP_class3(rs.getString("p_class3"));
+				vo.setP_class4(rs.getString("p_class4"));
+
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return vo;
+	}
+	public productVO getProduct3(String p_category)
+			throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		productVO vo = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(
+					"select * from product where p_category = ?");
+			pstmt.setString(1, p_category);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				vo = new productVO();
+				vo.setP_num(rs.getInt("p_num"));
+				vo.setP_email(rs.getString("p_email"));
+				vo.setP_category(rs.getString("p_category"));
+				vo.setP_classname(rs.getString("p_classname"));
+				vo.setP_self(rs.getString("p_self"));
+				vo.setP_time(rs.getInt("p_time"));
+				vo.setP_cost(rs.getInt("p_cost"));
+				vo.setP_memo(rs.getString("p_memo"));
+				vo.setP_count_min(rs.getInt("p_count_min"));
+				vo.setP_count_max(rs.getInt("p_count_max"));
+				vo.setP_class1(rs.getString("p_class1"));
+				vo.setP_class2(rs.getString("p_class2"));
+				vo.setP_class3(rs.getString("p_class3"));
+				vo.setP_class4(rs.getString("p_class4"));
+
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return vo;
+	}
+	public productVO getProduct4(String p_email)
 			throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -213,31 +294,7 @@ public productVO getProduct(int p_num)
 		}
 		return vo;
 	}
-
-//저장된 전체 글의 수를 얻어냄
-	public int getProductCount() throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int x=0;
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement("select count(*) from product");
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				x= rs.getInt(1); //0번아니고 1번부터 시작
-			}
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-		}
-		return x; 
-	}
-	
-	//최종 시퀀스 값 검색하기_ok
+	//최종 시퀀스 값 검색하기_성민ok
 		public int getProductNum() {
 			int x = 0;
 
@@ -262,6 +319,28 @@ public productVO getProduct(int p_num)
 		}
 	
 	
+//저장된 전체 글의 수를 얻어냄
+	public int getProductCount() throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x=0;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select count(*) from product");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				x= rs.getInt(1); //0번아니고 1번부터 시작
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return x; 
+	}
 	
 	
 	
@@ -309,5 +388,99 @@ public List getProduct(int start, int end) throws Exception {
 
 	
 	return productList;
+	}
+//서브 카테고리 리스트
+	public List getProductSub(String cate, int start, int end) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List cateSubList=null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(
+					"select p_num,p_email,p_category,p_classname,p_self,p_time,p_cost,p_memo,p_count_min,p_count_max,p_class1,p_class2,p_class3,p_class4,r"
+					+ " from(select p_num,p_email,p_category,p_classname,p_self,p_time,p_cost,p_memo,p_count_min,p_count_max,p_class1,p_class2,p_class3,p_class4,rownum r"
+					+ " from(select * from product where p_category =? order by p_num)"
+					+ " order by p_num) where r>=? and r<=?");
+			pstmt.setString(1, cate);
+			pstmt.setInt(2, start); 
+			pstmt.setInt(3, end);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				cateSubList = new ArrayList(end); 
+				do{ 
+					productVO vo= new productVO();
+					vo.setP_num(rs.getInt("p_num"));
+					vo.setP_email(rs.getString("p_email"));
+					vo.setP_category(rs.getString("p_category"));
+					vo.setP_classname(rs.getString("p_classname"));
+					vo.setP_self(rs.getString("p_self"));
+					vo.setP_time(rs.getInt("p_time"));
+					vo.setP_cost(rs.getInt("p_cost"));
+					vo.setP_memo(rs.getString("p_memo"));
+					vo.setP_count_min(rs.getInt("p_count_min"));
+					vo.setP_count_max(rs.getInt("p_count_max"));
+					vo.setP_class1(rs.getString("p_class1"));
+					vo.setP_class2(rs.getString("p_class2"));
+					vo.setP_class3(rs.getString("p_class3"));
+					vo.setP_class4(rs.getString("p_class4"));
+					cateSubList.add(vo);
+				}while(rs.next());
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return cateSubList;
+	}
+//튜터가 등록한 수업리스트
+	public List getProductTutor(String email, int start, int end) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List tutorProductList=null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(
+					"select p_num,p_email,p_category,p_classname,p_self,p_time,p_cost,p_memo,p_count_min,p_count_max,p_class1,p_class2,p_class3,p_class4,r"
+					+ " from(select p_num,p_email,p_category,p_classname,p_self,p_time,p_cost,p_memo,p_count_min,p_count_max,p_class1,p_class2,p_class3,p_class4,rownum r"
+					+ " from(select * from product where p_email =? order by p_num)"
+					+ " order by p_num) where r>=? and r<=?");
+			pstmt.setString(1, email);
+			pstmt.setInt(2, start); 
+			pstmt.setInt(3, end);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				tutorProductList = new ArrayList(end); 
+				do{ 
+					productVO vo= new productVO();
+					vo.setP_num(rs.getInt("p_num"));
+					vo.setP_email(rs.getString("p_email"));
+					vo.setP_category(rs.getString("p_category"));
+					vo.setP_classname(rs.getString("p_classname"));
+					vo.setP_self(rs.getString("p_self"));
+					vo.setP_time(rs.getInt("p_time"));
+					vo.setP_cost(rs.getInt("p_cost"));
+					vo.setP_memo(rs.getString("p_memo"));
+					vo.setP_count_min(rs.getInt("p_count_min"));
+					vo.setP_count_max(rs.getInt("p_count_max"));
+					vo.setP_class1(rs.getString("p_class1"));
+					vo.setP_class2(rs.getString("p_class2"));
+					vo.setP_class3(rs.getString("p_class3"));
+					vo.setP_class4(rs.getString("p_class4"));
+					tutorProductList.add(vo);
+				}while(rs.next());
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return tutorProductList;
 	}
 }
