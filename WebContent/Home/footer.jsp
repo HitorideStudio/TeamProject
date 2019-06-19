@@ -13,7 +13,7 @@
 }
 .footer_cont {
 	width:1050px;
-	height:380px;
+	height:300px;
 	margin: 0px 100px;
 	padding: 35px 0px 70px;
 	font-family: Arial, Helvetica, sans-serif;

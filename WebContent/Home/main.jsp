@@ -108,7 +108,7 @@ body {
 		<jsp:include page="/listTest.jsp" />
 	
 	
-	<!--  <div class="row">
+<!--  	<div class="row">
   <div class="side">
     <h2>About Me</h2>
     <h5>Photo of me:</h5>

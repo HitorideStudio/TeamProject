@@ -3,7 +3,9 @@
 <%@ page import = "hmjm.bean.buy.*" %>
 <%@ page import = "hmjm.bean.classtime.*" %>
 <%@ page import = "hmjm.bean.classimg.*" %>
+<%@ page import = "hmjm.bean.tutor.*" %>
 <%@ page import = "java.util.List" %>
+<%@ page import = "oracle.net.aso.b"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +30,22 @@
 		classimgDAO aa  = classimgDAO.getInstance();
 		classimgVO bb = aa.getImg(num);
 		
+		//내수업인지 신청한 수업인지 구별하기 위해 불러오는 값..테스트중
+				tutorDAO tu = tutorDAO.getInstance();
+				tutorVO ee = tu.getMember(id);
+				
+				System.out.println("튜터정보**e**"+ee);
+				
+				buyDAO buyer = buyDAO.getInstance();
+				buyVO b = buyer.getBuy(id);
+				//buyVO c =buyer.getBuy2(num);
+				System.out.println("구매정보**b**"+b);
+				
+				//System.out.println("구매한경우강의넘버**bbb**"+bbb);
+				productVO vc = dbPro.getProduct2(id);
+				
+				
+				//내가 등록한 강의 번호	
 		
 		
 		//사진 불러오기 할려고 했는데 이건 아닌 듯....미완성
@@ -78,47 +96,115 @@
 
 	<div>
 	수업가능시간::::::::
+	<%if(t == null){ %>
+	<h1> 시간 미등록 튜터</h1>
+	<%}else{ %>
 			<%if(t.getCt_mon()==null){%>
 			<%}else{%>
-			월: <%=t.getCt_mon() %>
-			<%} %>
+				월: <%=t.getCt_mon()%>
+			<%}%>
+			
 			<%if(t.getCt_tue()==null){%>
 			<%}else{%>
-			화: <%=t.getCt_tue() %>
-			<%} %>
+				화: <%=t.getCt_tue()%>
+				<%}%>
+				
 			<%if(t.getCt_wed()==null){%>
 			<%}else{%>
-			수: <%=t.getCt_wed() %>
-			<%} %>
+				수: <%=t.getCt_wed()%>
+			<%}%>
+			
 			<%if(t.getCt_thu()==null){%>
 			<%}else{%>
-			목: <%=t.getCt_thu() %>
-			<%} %>
+				목: <%=t.getCt_thu()%>
+			<%}%>
+			
 			<%if(t.getCt_fri()==null){%>
 			<%}else{%>
-			금: <%=t.getCt_fri() %>
-			<%} %>
+				금: <%=t.getCt_fri() %>
+			<%}%>
+			
 			<%if(t.getCt_sta()==null){%>
 			<%}else{%>
-			토: <%=t.getCt_sta() %>
-			<%} %>
+				토: <%=t.getCt_sta()%>
+			<%}%>
 			
 			<%if(t.getCt_sun()==null){%>
 			<%}else{%>
-			일: <%=t.getCt_sun() %>
-			<%} %>
-			
+				일: <%=t.getCt_sun() %>
+				<% %>
+				
 			<%if(t.getCt_day()==null){%>
 			<%}else{%>
-			데이수업<%=t.getCt_day() %>
-			<%} %>
+				데이수업<%=t.getCt_day()%>
+			<%}%>
+	<%}%>
+	<%}%>
 
 <% 
 	}catch(Exception e){} 
 %>	
 			
 		</div><br>
-	<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">강의신청</a>
+<% if(bb==null){%>
+	<h1>사진 미등록 튜터</h1>
+	<%}else{ %>
+	
+		<%if(count == 0){%>
+		test
+		<%}else{%>
+			<% for(int i = 0 ; i < classimgList.size(); i++){
+			classimgVO g = (classimgVO)classimgList.get(i);%>
+			<img src="/hmjm/Images/Classimg/<%=g.getCi_name()%>" width="50%" >
+			<%}%>
+		<%}%>
+	<%}%>
+	
+
+<br>
+<%
+if(id!=null){
+	
+	if(ee!=null){
+
+		if(b!=null){int bbb = b.getB_productnumber();
+
+				if(bbb==num){%>
+					튜터o 내가 구매한 강의
+					<%}else{
+						int vv = vc.getP_num();
+						if(vv==num){%>
+							내가 등록한 강의
+							<%}else{%>
+						<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">튜터o구매이력o 신청하기</a>
+							<%}
+						}
+			}else{%>
+				<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">튜터o 구매이력x 신청하기</a>
+				<%}
+
+	}else{
+	
+			if(b!=null){int bbb = b.getB_productnumber();
+
+				if(bbb==num){%>
+					튜터x 내가 구매한 강의
+					<%}else{%>
+						<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">튜터x구매이력o 신청하기</a>
+						<%}
+			}else{%>
+				<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">튜터x 구매이력x 신청하기</a>
+				<%}
+
+			}
+	
+	
+	}else{%>
+		<a href ="./check.jsp?p_num=<%=vo.getP_num() %>">비로그인 신청하기</a>
+		<%}
+
+
+%>
 	
 
 <jsp:include page="/Home/footer.jsp" />	
