@@ -341,7 +341,29 @@ public productVO getProduct(int p_num)
 		}
 		return x; 
 	}
-	
+	//튜터별 강의 수 파악하기위해
+			public int getProductCount2(String id) throws Exception {
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				int x=0;
+				try {
+					conn = getConnection();
+					pstmt = conn.prepareStatement("select count(*) from product where p_email=?");
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();
+					if (rs.next()) {
+						x= rs.getInt(1); //0번아니고 1번부터 시작
+					}
+				} catch(Exception ex) {
+					ex.printStackTrace();
+				} finally {
+					if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+					if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+					if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+				}
+				return x; 
+			}	
 	
 	
 	

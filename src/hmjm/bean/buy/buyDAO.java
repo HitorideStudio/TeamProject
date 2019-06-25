@@ -108,6 +108,85 @@ public class buyDAO {
 	}
 	return vo;
 	}
+	//주문받은거 확인위해
+		public buyVO getBuyOrder(String tutor_id)
+				throws Exception{
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				buyVO vo = null;
+				try {
+					conn = getConnection();
+					pstmt = conn.prepareStatement(
+							"select * from buy where tutor_id = ?");
+					pstmt.setString(1, tutor_id);
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						vo = new buyVO();
+						vo.setB_num(rs.getInt("b_num"));
+						vo.setB_email(rs.getString("b_email"));
+						vo.setB_productnumber(rs.getInt("b_productnumber"));
+						vo.setB_classname(rs.getString("b_classname"));
+						vo.setB_place(rs.getString("b_place"));
+						vo.setB_day(rs.getString("b_day"));
+						vo.setTutor_id(rs.getString("tutor_id"));
+					}
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+				if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+				if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			}
+			return vo;
+			}
+		//개인 구매 카운팅 위해	
+		public int buyCount2(String id) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int x=0;
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement("select count(*) from buy where b_email=?");
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					x= rs.getInt(1); //0번아니고 1번부터 시작
+				}
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+				if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+				if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			}
+			return x; 
+		}
+		//신청받은 수 카운팅 위해서
+			public int buyCount3(String id) throws Exception {
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				int x=0;
+				try {
+					conn = getConnection();
+					pstmt = conn.prepareStatement("select count(*) from buy where tutor_id=?");
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();
+					if (rs.next()) {
+						x= rs.getInt(1); //0번아니고 1번부터 시작
+					}
+				} catch(Exception ex) {
+					ex.printStackTrace();
+				} finally {
+					if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+					if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+					if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+				}
+				return x; 
+			}
 	//상품번호로 검색하기 위해
 		public buyVO getBuy2(int b_productnumber)
 				throws Exception{
@@ -173,6 +252,7 @@ public class buyDAO {
 			}
 			return vo;
 			}
+		
 	//구매리스트 위해 kunhoon
 		public List getBuyList(String email, int start, int end)throws Exception{
 			Connection conn = null;

@@ -29,7 +29,11 @@
 a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 
 #icon, img { /*아이콘 이미지 사이즈 */width: 50px;}
-
+#userImg{
+	border-radius:50%;
+	width:100px;
+	
+}
 </style>
 </head>
 <%
@@ -47,54 +51,76 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 	
 	buyDAO buyer = buyDAO.getInstance();
 	buyVO b = buyer.getBuy(m_email);
+	buyVO o = buyer.getBuyOrder(m_email);//구매자 있는지 확인할 때
+	int count = 0;
+	int countp = 0;
+	int countOrder = 0;
+	count = buyer.buyCount2(m_email);
+	countOrder = buyer.buyCount3(m_email);
+	countp = product.getProductCount2(m_email);
 	%>
 <body>
 	<table id="top" border="1">
 		<tr>
 			<td class="section">
 			<%if(e == null){ %>
-			<img src="../Images/TutorImg/user.png" width="50%"/><%=m_email %><br>
+			<img src="../Images/TutorImg/user.png" width="50%" /><%=m_email %><br>
 			<a href="/TeamProject/Tutor/Register/menu.jsp">튜터 등록하세요</a><br>
 			<%} else {%>
-			<%=e.getT_num() %>
-				<%--등록한 이미지사진 불러오기 --%> <img src="../Images/TutorImg/<%=e.getT_selfimg()%>"
-				width="30%" height="30%" /> <%--해당 이메일의 닉네임 --%> <%=c.getM_name()%> 님<br> 
-				<a href="/TeamProject/Tutor/Register/menu.jsp">튜터 정보 수정</a><br>
+			
+				<img id="userImg" src="../Images/TutorImg/<%=e.getT_selfimg()%>" /> <%--해당 이메일의 닉네임 --%> <%=c.getM_name()%> 님<br> 
+				<button class="btn click" 
+						onClick="location.href='/TeamProject/Tutor/tutorModifyForm.jsp'">튜터 정보 수정
+					</button>
 				
 				<%}%>
-				<a href="/TeamProject/My/profile.jsp">정보 수정</a>&nbsp;<br>
+				<button class="btn click"
+					onClick="location.href='/TeamProject/My/profile.jsp'">정보 수정</button>
 				
 				
-				<a href="/TeamProject/Log/logout.jsp">로그아웃</a>
+				<button class="btn click"
+					onClick="location.href='/TeamProject/Log/logout.jsp'">로그 아웃</button>
 			</td>
 			
 			<td class="section">
 				<div class="sec_box">
-					<div class="sec_box_ele">
-						<img class="icon" alt="" src="/TeamProject/Images/Icon/kakao.jpg">
+					
+					<div class="nav_inner_colBox">
+						<img class="nav_icon" alt="" src="/TeamProject/Images/Icon/journal.png">
 						<p>받은수업신청서</p>
-						<p>0건</p>
+						<%if(e == null){ %>
+						<p>튜터:미등록</p>
+						<%} else {
+							if(p == null){ %>
+							<p>아직<br> 나의 수업이 없어요</p>
+							<%}else{
+							if(b == null){ %>
+								<p>(<%=countOrder %>)건</p>
+								<%}else{ %>
+									<p>(<%=countOrder %>)건</p>
+						<button class="btn click" onClick="location.href='/TeamProject/My/myClass.jsp?p_num=<%=b.getB_productnumber()%>'">리스트 보기</button>
+								<%}%>
+							<%}%>
+							<%}%>
 					</div>
 					<div class="sec_box_ele">
 						<img class="icon" alt="" src="/TeamProject/Images/Icon/kakao.jpg">
 						<p>신청한 수업</p>
 						<%if(b == null){ %>
-							<p>수업을 신청하세요^^</p>
+							<p>수업을 신청하세요.</p>
 							<%}else{ %>
-						<p>수업이름: <%=b.getB_classname() %></p>
-						<p>수업번호: <a href ="../Talent/Detail.jsp?p_num=<%=b.getB_productnumber() %>"><%=b.getB_productnumber() %></a> </p>
-						<p>상세보기: <a href ="/TeamProject/My/myClass.jsp?p_num=<%=b.getB_productnumber() %>">테스트경로</a> </p>	
+							<p>(<%=count %>)건</p>
+							<button class="btn click" onClick="location.href='/TeamProject/My/myClass.jsp?p_num=<%=b.getB_productnumber() %>'">리스트보기</button>
 							<%}%>
 					</div>
 					<div class="sec_box_ele">
 						<img class="icon" alt="" src="/TeamProject/Images/Icon/kakao.jpg">
-						<p>나의 수업</p>
+						<p>내 수업</p>
 						<%if(p == null){ %>
-							<p>아직 나의 수업이 없어요</p>
-							<%}else{ %>
-							<p>수업이름: <%=p.getP_classname() %></p>
-							<p>수업번호: <a href ="../Talent/Detail.jsp?p_num=<%=p.getP_num() %>"><%=p.getP_num() %></a> </p>
-							<p>상세보기: <a href ="/TeamProject/My/myClass.jsp?p_num=<%=p.getP_num() %>">테스트경로</a> </p>
+							<p>아직<br> 나의 수업이  없어요</p>
+							<%}else{%>
+							<p>(<%=countp %>)건</p>
+							<button class="btn click" onClick="location.href='/TeamProject/My/myClass.jsp?p_num=<%=p.getP_num() %>'">리스트보기</button>
 							<%}%>
 					</div>
 
@@ -102,11 +128,12 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 			</td>
 			<td class="section">
 				<div>
-					<span>등록된 전화번호:</span> <%=c.getM_phone() %>
+					<span>등록된 전화번호  <%=c.getM_phone() %></span>
+					<button class="btn click" onClick="location.href='/TeamProject/My/profile.jsp'">수정하기</button>
 				</div>
 				<div>
-					<span>등록 된 이메일:</span>
-					<%=m_email%>
+					<span>등록 된 이메일<%=m_email%></span>
+					
 				</div>
 				<div>
 				<%
@@ -118,7 +145,7 @@ a {/*밀줄 제거, 폰트 사이즈 변경, 윤곽 잡기(버튼처럼)*/}
 				
 				</div>
 				<div>
-					<span>계정 정보:</span> <a href="/TeamProject/My/profile.jsp">비밀번호변경</a>
+					<span>계정 정보:</span><button class="btn click" onClick="location.href='/TeamProject/Account/resetPassword.jsp'">비밀번호변경</button>
 				</div>
 
 			</td>

@@ -57,13 +57,6 @@ body {
   color: black;
 }
 
-
-
-
-
-
-
-
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
   .row {   
@@ -122,7 +115,7 @@ body {
 					if(session.getAttribute("loginId")== null){%>
 						<a href="<%=logURL%>"class="right"><%=loginbarName %></a>
 					<%}else{%>
-						<a href="" onclick="openRealtimetalk()"class="right"><%=loginbarName%></a>
+						<a href="" onclick="openRealtimetalk()" class="right"><%=loginbarName%></a>
 						<a href="/TeamProject/My/application.jsp" class="right">내페이지</a> 
 					<%}%>
 </div>

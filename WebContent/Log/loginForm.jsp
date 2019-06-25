@@ -5,26 +5,24 @@
 <head>
 	<title>Login</title>
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+	<style type="text/css">
+	.thumb1{
+	height: 300px;
+	
+	padding: 80px;
+	}
+	
+	</style>
 </head>
 
 <body class="not-front">
 
-	<jsp:include page="/Home/header.jsp"/>
+<jsp:include page="/Home/header.jsp"/>
 
 	
-<h1>Login</h1>
-
-
-
-
-	
-<h2><span>Welcome</span></h2>
-
-<h3>Login Here</h3>
-
 <div class="thumb1">
 	<div class="thumbnail clearfix">
-		<figure class=""><img src="images/about01.jpg" alt=""></figure>
+		
 		<div class="caption">
 			
 			
@@ -69,8 +67,6 @@
 			</script>
 			
 			 네이버아이디로로그인 초기화 Script -->
-			
-			
 			
 			</form>
 			<%}else{ //로그아웃시 main.jsp로 이동

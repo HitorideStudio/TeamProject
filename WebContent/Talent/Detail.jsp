@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" %>
 <%@ page import = "hmjm.bean.product.*" %>
 <%@ page import = "hmjm.bean.buy.*" %>
 <%@ page import = "hmjm.bean.classtime.*" %>
@@ -10,47 +10,138 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>°­ÀÇ »ó¼¼ÆäÀÌÁökkkk</title>
+<title>ê°•ì˜ ìƒì„¸í˜ì´ì§€kkkk</title>
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+ 
+  font-family: Helvetica, sans-serif;
+}
+
+#tuImg {
+	float: center;
+	overflow: hidden;
+	display: block;
+	margin: 0 auto;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background-size: cover;
+	background-position: center;
+}
+
+#container_detail {
+    width: 1000px;
+    background: none;
+    padding: 50px 0 50px 0;
+    letter-spacing: 0;
+    margin: 0 auto;
+}
+.pic {
+	width: 500px;
+	height: 200px;
+    float: left;
+    
+    padding: 0 80px 0 80px;
+}
+.title {
+	width: 500px;
+	height: 100px;
+    float: right;
+    margin: 0 auto;
+    padding: 0 0 0 0;
+     
+}
+.title2 {
+	width: 500px;
+	height: 100px;
+    float: right;
+    margin: 0 auto;
+    padding: 0 0 0 0;
+     
+}
+.s {
+	padding: 50px;
+	width: 1000px;
+	
+	margin: 0 auto; 
+}
+.empty{
+	height:30px;
+	background-color:green;
+}
+/*ë²„íŠ¼ ìŠ¤íƒ€ì¼*/
+.btn {
+ 	background-color: #4CAF90;
+	color: white;
+	padding: 16px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 400px;
+	opacity: 0.9;
+}
+
+
+.success:hover {opacity: 1;}
+
+ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+li {
+
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+}
+
+</style>
 </head>
 
 <%
 
-	String id = (String) session.getAttribute("loginId");
-	int num = Integer.parseInt(request.getParameter("p_num"));
-	String pageNum = request.getParameter("pageNum");
+		String id = (String) session.getAttribute("loginId");
+		int num = Integer.parseInt(request.getParameter("p_num"));
+		String pageNum = request.getParameter("pageNum");
 	
-	
-		
-		
 		classtimeDAO time = classtimeDAO.getInstance();
 		classtimeVO t = time.getClasstime(num);
-		//String t_email = vo.getP_email();//°­»ç ´Ğ³×ÀÓÀ» ºÒ·¯¿À±âÀ§ÇØ
+		//String t_email = vo.getP_email();//ê°•ì‚¬ ë‹‰ë„¤ì„ì„ ë¶ˆëŸ¬ì˜¤ê¸°ìœ„í•´
 		
 		classimgDAO aa  = classimgDAO.getInstance();
 		classimgVO bb = aa.getImg(num);
+		int cp = Integer.parseInt(t.getCt_place());//ì§€ì—­í‘œì‹œ ìœ„í•´
 		
-		//³»¼ö¾÷ÀÎÁö ½ÅÃ»ÇÑ ¼ö¾÷ÀÎÁö ±¸º°ÇÏ±â À§ÇØ ºÒ·¯¿À´Â °ª..Å×½ºÆ®Áß
-				tutorDAO tu = tutorDAO.getInstance();
-				tutorVO ee = tu.getMember(id);
+		//ë‚´ìˆ˜ì—…ì¸ì§€ ì‹ ì²­í•œ ìˆ˜ì—…ì¸ì§€ êµ¬ë³„í•˜ê¸° ìœ„í•´ ë¶ˆëŸ¬ì˜¤ëŠ” ê°’..í…ŒìŠ¤íŠ¸ì¤‘
+		tutorDAO tu = tutorDAO.getInstance();
+		tutorVO ee = tu.getMember(id);
 				
-				System.out.println("Æ©ÅÍÁ¤º¸**e**"+ee);
+		System.out.println("íŠœí„°ì •ë³´**e**"+ee);
 				
-				buyDAO buyer = buyDAO.getInstance();
-				buyVO b = buyer.getBuy(id);
-				buyVO c = buyer.getBuy3(id,num);//±¸¸ÅÇÑ »óÇ° ½ÅÃ» ¸øÇÏ°Ô
-				System.out.println("±¸¸ÅÁ¤º¸**b**"+b);
+		buyDAO buyer = buyDAO.getInstance();
+		buyVO b = buyer.getBuy(id);
+		buyVO c = buyer.getBuy3(id,num);//êµ¬ë§¤í•œ ìƒí’ˆ ì‹ ì²­ ëª»í•˜ê²Œ
+		System.out.println("êµ¬ë§¤ì •ë³´**b**"+b);
 				
-				//System.out.println("±¸¸ÅÇÑ°æ¿ì°­ÀÇ³Ñ¹ö**bbb**"+bbb);
-				productDAO dbPro = productDAO.getInstance();
-				productVO vo = dbPro.getProduct(num);
-				productVO vc = dbPro.getProduct2(id,num);//µî·ÏÇÑ »óÇ° ½ÅÃ» ¸øÇÏ°Ô
-				productVO vd = dbPro.getProduct4(id); 
-				
-				
-				//³»°¡ µî·ÏÇÑ °­ÀÇ ¹øÈ£	
+		//System.out.println("êµ¬ë§¤í•œê²½ìš°ê°•ì˜ë„˜ë²„**bbb**"+bbb);
+		productDAO dbPro = productDAO.getInstance();
+		productVO vo = dbPro.getProduct(num);
+		productVO vc = dbPro.getProduct2(id,num);//ë“±ë¡í•œ ìƒí’ˆ ì‹ ì²­ ëª»í•˜ê²Œ
+		productVO vd = dbPro.getProduct4(id);
+		String t_email = vo.getP_email();//ê°•ì‚¬ ë‹‰ë„¤ì„ì„ ë¶ˆëŸ¬ì˜¤ê¸°ìœ„í•´
+		tutorVO et = tu.getMember(t_email);
+					
+		//ë‚´ê°€ ë“±ë¡í•œ ê°•ì˜ ë²ˆí˜¸	
 		
-		
-		//»çÁø ºÒ·¯¿À±â ÇÒ·Á°í Çß´Âµ¥ ÀÌ°Ç ¾Æ´Ñ µí....¹Ì¿Ï¼º
+		//ì‚¬ì§„ ë¶ˆëŸ¬ì˜¤ê¸° í• ë ¤ê³  í–ˆëŠ”ë° ì´ê±´ ì•„ë‹Œ ë“¯....ë¯¸ì™„ì„±
 		if (pageNum == null) { pageNum = "1"; }
 		int pageSize = 10;
 		int currentPage = Integer.parseInt(pageNum);
@@ -71,152 +162,249 @@
 %>
 <jsp:include page="../Home/header.jsp" />
 <body>
-
-	<h1>°­ÀÇ »ó¼¼ ÆäÀÌÁö</h1>
-	<p><%=vo.getP_num() %>:::::::::::::ÀÌ°Å °­ÀÇ¹øÈ£¸¦ ½ÅÃ»ÇÒ¶§ ³Ñ°Ü¾ßÇÑ´Ù</p><br>
-	<h1><%=vo.getP_classname() %></h1><br>
-	°­»ç¼Ò°³:::::::: <%=vo.getP_self() %><br>
-	Ä«Å×°í¸®:::::::: <%=vo.getP_category() %><br>
-	°­»çÀÌ¸ŞÀÏ:::::::: <%=vo.getP_email() %><br><br>
-<% 	try{%>	
-	<% if(bb.getCi_name()==null){%>
-	error
-	<%}else{ %>
-	
-		<%if(count == 0){%>
-		test
-		<%}else{%>
-			<% for(int i = 0 ; i < classimgList.size(); i++){
-			classimgVO g = (classimgVO)classimgList.get(i);%>
+<div id="container_detail">
 		
-			<img src="/Images/classimg/<%=g.getCi_name()%>"
-			width="50%" height="50%">
-			<%}%>
-		<%}%>
-	<%}%>
-
-
-	<div>
-	¼ö¾÷°¡´É½Ã°£::::::::
-	<%if(t == null){ %>
-	<h1> ½Ã°£ ¹Ìµî·Ï Æ©ÅÍ</h1>
-	<%}else{ %>
+			<div class="pic">
+				<img id="tuImg" src="/TeamProject/Images/TutorImg/<%=et.getT_selfimg()%>">
+				<%=et.getT_nick() %>
+				<input type="hidden" name="p_email"
+					value="<%=vo.getP_email()%>" /><br>
+				ê°•ì‚¬ì´ë©”ì¼:::::::: <a href="#"
+					onClick="window.open('/TeamProject/Message/messageWriteForm.jsp?p_email=<%=vo.getP_email()%>&p_num=<%=num%>',
+					'_blank','toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,directories=no,width=650,height=660')">
+						<%=vo.getP_email() %></a>
+			</div>
+			<div class="title">
+				 <h1><%=vo.getP_classname()%></h1>
+			</div>
+			<div class="title2">
+			<ul>
+			<li><img src="/TeamProject/Images/Icon/location.png"><br>
+			<%switch(cp){
+				case 101:%>
+				ê°•ë‚¨<%;
+				break;
+				case 102:%>
+				ì‹ ì´Œí™ëŒ€<%;
+				break;
+				case 103:%>
+				ê±´ëŒ€<%;
+				break;
+				
+				case 201:%>
+				ìˆ˜ì›<%;
+				break;
+				case 202:%>
+				ë¶„ë‹¹<%;
+				break;
+				case 203:%>
+				ì£½ì „<%;
+				break;
+				
+				case 301:%>
+				ë¶€ì‚°ì„œë©´<%;
+				break;
+				case 302:%>
+				ë¶€ì‚°í•´ìš´ëŒ€<%;
+				break;
+				case 303:%>
+				ë¶€ì‚°ì‚¬ìƒ<%;
+				break;
+		
+				}%>
+				</li>
+				
+				
+				<li><img src="/TeamProject/Images/Icon/time.png"><br>
+				<%=vo.getP_time() %>ì‹œê°„/íšŒ
+				</li>
+				<li><img src="/TeamProject/Images/Icon/people.png"><br>
+				<%if(vo.getP_count_min()==0){%>
+				1:1ê°•ìŠµ<%}else{%>
+					<%=vo.getP_count_min() %>~<%=vo.getP_count_max() %>ëª…
+					<%} %>
+				</li>
+				<li><img src="/TeamProject/Images/Icon/don.png"><br>
+				<%=vo.getP_cost() %>ì›/ì‹œê°„
+				</li><br>
+				<%--ìˆ˜ì—…ê°€ëŠ¥ì‹œê°„ --%>
+		
+			<li>ìˆ˜ì—…ì‹œê°„:
+			<%if(t == null){ %>
+			<h1>ì‹œê°„ ë¯¸ë“±ë¡ íŠœí„°</h1>
+			<%}else{ %>
 			<%if(t.getCt_mon()==null){%>
 			<%}else{%>
-				¿ù: <%=t.getCt_mon()%>
+			ì›”:
+			<%=t.getCt_mon()%>
 			<%}%>
-			
+
 			<%if(t.getCt_tue()==null){%>
 			<%}else{%>
-				È­: <%=t.getCt_tue()%>
-				<%}%>
-				
+			í™”:
+			<%=t.getCt_tue()%>
+			<%}%>
+
 			<%if(t.getCt_wed()==null){%>
 			<%}else{%>
-				¼ö: <%=t.getCt_wed()%>
+			ìˆ˜:
+			<%=t.getCt_wed()%>
 			<%}%>
-			
+
 			<%if(t.getCt_thu()==null){%>
 			<%}else{%>
-				¸ñ: <%=t.getCt_thu()%>
+			ëª©:
+			<%=t.getCt_thu()%>
 			<%}%>
-			
+
 			<%if(t.getCt_fri()==null){%>
 			<%}else{%>
-				±İ: <%=t.getCt_fri() %>
+			ê¸ˆ:
+			<%=t.getCt_fri() %>
 			<%}%>
-			
+
 			<%if(t.getCt_sta()==null){%>
 			<%}else{%>
-				Åä: <%=t.getCt_sta()%>
+			í† :
+			<%=t.getCt_sta()%>
 			<%}%>
-			
+
 			<%if(t.getCt_sun()==null){%>
 			<%}else{%>
-				ÀÏ: <%=t.getCt_sun() %>
-				<% %>
-				
+			ì¼:
+			<%=t.getCt_sun() %>
+			<% %>
+
 			<%if(t.getCt_day()==null){%>
 			<%}else{%>
-				µ¥ÀÌ¼ö¾÷<%=t.getCt_day()%>
+			ë°ì´ìˆ˜ì—…<%=t.getCt_day()%>
 			<%}%>
-	<%}%>
-	<%}%>
-
-<% 
-	}catch(Exception e){} 
-%>	
+			<%}%>
+			<%}%>
+			</li>
+			</ul>	 
+			</div>
 			
-		</div><br>
-<% if(bb==null){%>
-	<h1>»çÁø ¹Ìµî·Ï Æ©ÅÍ</h1>
-	<%}else{ %>
-	
+				
+			<div class ="s">
+				<h4>ê°•ì‚¬ì†Œê°œ</h4>
+				<%=vo.getP_self()%>
+			</div>
+			<div class="empty"></div>	
+			
+			
+			<div class ="s">
+				<h4>íŠœí„°ì •ë³´</h4>
+				<%=vo.getP_class1() %>
+			</div>
+			<div class ="s">
+				<h4>ìˆ˜ì—…ì†Œê°œ</h4>
+				<%=vo.getP_class2() %>
+			</div>
+		
+			<div class ="s">
+				<h4>ìˆ˜ì—…ëŒ€ìƒ</h4>
+				<%=vo.getP_class3() %>
+			</div>
+			<div class ="s">	
+				<h4>ì»¤ë¦¬í˜ëŸ¼</h4>
+				<%=vo.getP_class4() %>
+			</div>
+			<%if(vo.getP_memo()==null){
+			}else{%>
+			<div class ="s">	
+				<h4>ë©”ëª¨</h4>
+				<%=vo.getP_memo() %>
+			</div>
+			<%}%>
+
+		</div>
+			í…ŒìŠ¤íŠ¸ë¼ì¸
+		<br>
+		<% if(bb==null){%>
+		<h1>ì‚¬ì§„ ë¯¸ë“±ë¡ íŠœí„°</h1>
+		<%}else{ %>
+
 		<%if(count == 0){%>
 		test
 		<%}else{%>
-			<% for(int i = 0 ; i < classimgList.size(); i++){
+		
+			
+		<% for(int i = 0 ; i < classimgList.size(); i++){
 			classimgVO g = (classimgVO)classimgList.get(i);%>
-			<img src="/hmjm/Images/Classimg/<%=g.getCi_name()%>" width="50%" >
+				<img src="/TeamProject/Images/Classimg/<%=g.getCi_name()%>" style="width:100%">
+				<%}%>
 			<%}%>
 		<%}%>
-	<%}%>
-	
 
-<br>
+		<br>
+
+<%--ì‹ ì²­í•˜ê¸° ifë¬¸ --%>
 <%
 if(id!=null){
 	if(ee!=null){
 		if(vd!=null){
 			if(vc!=null){%>
-				 ³»°¡µî·ÏÇÑ±Û<%=vc %>
-				<%}else{
+		ë‚´ê°€ ë“±ë¡í•œê¸€ <a href="/TeamProject/Home/main.jsp"> ì²˜ìŒìœ¼ë¡œ</a>
+		<%}else{
 					if(b!=null){
 						if(c!=null){%>
-								Æ©ÅÍ ±¸¸ÅÇÑ °­ÀÇ<%=c %>
-								<%}else{%>
-									Æ©ÅÍ o ±¸¸ÅÀÌ·Â o ½ÅÃ»ÇÏ±â<%=c %>
-								<%}
+		íŠœí„°o êµ¬ë§¤í•œ ê°•ì˜ <a href="/TeamProject/Home/main.jsp"> ì²˜ìŒìœ¼ë¡œ</a>
+		<%}else{%>
+		 íŠœí„° oêµ¬ë§¤ì´ë ¥ o ì‹ ì²­í•˜ê¸°
+		 <button class="btn btn-secondary" onclick="location.href='/TeamProject/Talent/check.jsp?p_num=<%=vo.getP_num() %>'">ê°•ì˜ì‹ ì²­</button>
+		<%}
 			
 							}else{%>
-								Æ©ÅÍo ±¸¸ÅÀÌ·Â x ½ÅÃ»ÇÏ±â
-								<%}
+		 íŠœí„°oêµ¬ë§¤ì´ë ¥ x ì‹ ì²­í•˜ê¸°
+		 <button class="btn btn-secondary" onclick="location.href='/TeamProject/Talent/check.jsp?p_num=<%=vo.getP_num() %>'">ê°•ì˜ì‹ ì²­</button>
+		<%}
 					
 				}
 			
 		}else{
 				if(b!=null){
 					if(c!=null){%>
-						Æ©ÅÍ o ÆÇ¸Åx ±¸¸ÅÇÑ °­ÀÇ
-						<%}else{%>
-						Æ©ÅÍ o ÆÇ¸Åx ±¸¸ÅÀÌ·Â o ½ÅÃ»ÇÏ±â
-						<%}
+		<!--  íŠœí„° o íŒë§¤x êµ¬ë§¤í•œ ê°•ì˜--> <a href="/TeamProject/Home/main.jsp"> ì²˜ìŒìœ¼ë¡œ</a>
+		<%}else{%>
+		 <!-- íŠœí„° oíŒë§¤x êµ¬ë§¤ì´ë ¥ o ì‹ ì²­í•˜ê¸° -->
+		 <button class="btn btn-secondary" onclick="location.href='/TeamProject/Talent/check.jsp?p_num=<%=vo.getP_num() %>'">ê°•ì˜ì‹ ì²­</button>
+		<%}
 			
 					}else{%>
-						Æ©ÅÍo ÆÇ¸Åx ±¸¸ÅÀÌ·Â x ½ÅÃ»ÇÏ±â 
-						<%}
+		<!--  íŠœí„°oíŒë§¤x êµ¬ë§¤ì´ë ¥ x ì‹ ì²­í•˜ê¸°--> 
+		<button class="btn btn-secondary" onclick="location.href='/TeamProject/Talent/check.jsp?p_num=<%=vo.getP_num() %>'">ê°•ì˜ì‹ ì²­</button>
+		<%}
 			
 				}
 				
 		}else{
 				if(b!=null){
 					if(c!=null){%>
-						Æ©ÅÍx ±¸¸ÅÇÑ±Û
-					<%}else{%>
-						Æ©ÅÍx ±¸¸ÅÀÌ·Âo ½ÅÃ»ÇÏ±â
-					<%}
+		<!--íŠœí„°x êµ¬ë§¤í•œ ê°•ì˜--><a href="/TeamProject/Home/main.jsp"> ì²˜ìŒìœ¼ë¡œ</a>
+		<%}else{%>
+		<!-- íŠœí„°xêµ¬ë§¤ì´ë ¥o ì‹ ì²­í•˜ê¸°-->
+		 <button class="btn btn-secondary" onclick="location.href='/TeamProject/Talent/check.jsp?p_num=<%=vo.getP_num() %>'">ê°•ì˜ì‹ ì²­</button>
+		<%}
 			
 				}else{%>
-					Æ©ÅÍx ±¸¸ÅÀÌ·Â x Ã¹±¸¸Å!
-				<%}	
+				<button class="btn btn-secondary" onclick="location.href='/TeamProject/Talent/check.jsp?p_num=<%=vo.getP_num() %>'">ê°•ì˜ì‹ ì²­</button>
+		<!--íŠœí„°xêµ¬ë§¤ì´ë ¥ x--> ì²«êµ¬ë§¤!
+		<%}	
 			
 			}
 	}else{%>
-		ºñ·Î±×ÀÎ ½ÅÃ»
-	<%}
+		
+		<button type="button" class="btn btn-secondary" 
+		onClick="location.href='/TeamProject/Talent/check.jsp?p_num=<%=vo.getP_num() %>'">ê°•ì˜ì‹ ì²­</button>
+	<br />
+		<%}
 
 
-%>	
+%>
+
+
+		<br> <br>
 	
 
 <jsp:include page="/Home/footer.jsp" />	

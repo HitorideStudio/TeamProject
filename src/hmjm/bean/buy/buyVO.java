@@ -10,6 +10,15 @@ public class buyVO {
 	private String b_classname;
 	private String b_place;
 	private String b_day;
+	private String tutor_id;
+	
+	
+	public String getTutor_id() {
+		return tutor_id;
+	}
+	public void setTutor_id(String tutor_id) {
+		this.tutor_id = tutor_id;
+	}
 	public int getB_num() {
 		return b_num;
 	}
