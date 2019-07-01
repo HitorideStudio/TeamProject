@@ -11,7 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<form method="POST" name="deleteform" action="/hmjm/Review/reviewDeletePro.jsp?num=<%=num%>&p_num=<%=pnum %>">
+<form method="POST" name="deleteform" action="/hmjm/Review/reviewMoreDeletePro.jsp?num=<%=num%>&p_num=<%=pnum %>">
 	<table>
 		<tr><td>리뷰를 삭제하시겠습니까?
 				<input type="hidden" name="r_num" value="<%=num%>">
@@ -19,7 +19,7 @@
 			
 		<tr><td><button type="submit" class="btn btn-danger">삭제</button>
 				<button type="button" class="btn btn-dark"
-					onclick="document.location.href='/hmjm/Talent/Detail.jsp?p_num=<%=pnum%>'">돌아가기</button>
+					onclick="document.location.href='/hmjm/Review/reviewMore.jsp?p_num=<%=pnum%>'">돌아가기</button>
       		</td></tr>    
 	</table>
 </form>

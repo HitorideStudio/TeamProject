@@ -11,8 +11,7 @@
 	reviewDAO dbPro = reviewDAO.getInstance();
 	int check = dbPro.deleteArticle(num);
 	
-	if(check==1){
+	if(check==1){%>
+		<meta http-equiv="Refresh" content="0;url=/hmjm/Review/reviewMore.jsp?p_num=<%=pnum%>" >
+	<%}
 %>
-	<meta http-equiv="Refresh" content="0;url=/hmjm/Talent/Detail.jsp?p_num=<%=pnum%>" >
-  
-<%} %>

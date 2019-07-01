@@ -14,10 +14,11 @@
     int check = dbPro.updateArticle(article);
     if(check==1){
 %>
-	<meta http-equiv="Refresh" content="0;url=/hmjm/Talent/Detail.jsp?p_num=<%=pnum %>" >
-	<script language="JavaScript">
+	
+	<script>
 		alert("수정완료");
 	</script>
-	response.sendRedirect("review.jsp");
+	
+	<meta http-equiv="Refresh" content="0;url=/hmjm/Review/reviewMore.jsp?p_num=<%=pnum%>" >
 <% }%>
       

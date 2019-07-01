@@ -6,13 +6,10 @@
 <% request.setCharacterEncoding("UTF-8");%>
 <html>
 <head>
-<head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</head>
-
 </head>
 
 <% 
@@ -31,7 +28,7 @@
    
 <body>
 <!-- 리뷰를 수정할 때는 이름, 내용, 점수를 이전에 작성한 그대로 불러옴 -->
-<form method="post" name="writeform" action="/hmjm/Review/reviewUpdatePro.jsp?p_num=<%=pnum %>">
+<form method="post" name="writeform" action="/hmjm/Review/reviewMoreUpdatePro.jsp?p_num=<%=pnum %>">
 	<input type="hidden" name="r_num" value="<%=num%>">
 <table width="800" border="1" cellspacing="0" cellpadding="0" align="center">
 	

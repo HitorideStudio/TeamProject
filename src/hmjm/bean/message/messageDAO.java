@@ -5,7 +5,7 @@ import javax.sql.*;
 
 import javax.naming.*;
 import java.util.*; 
-import hmjm.bean.vo.messageVO;
+import hmjm.bean.message.messageVO;
 
 public class messageDAO {
 	private static messageDAO instance = new messageDAO();
